@@ -315,7 +315,7 @@ Pod::Spec.new do |spec|
   end
 
   spec.subspec 'websockets_static' do |s|
-    s.preserve_path = 'external/websockets/include/{ios/mac}'
+    s.preserve_path = 'external/websockets/include/{ios,mac}'
 
     s.ios.public_header_files = 'external/websockets/include/ios/*'
     s.osx.public_header_files = 'external/websockets/include/mac/*'
@@ -331,7 +331,7 @@ Pod::Spec.new do |spec|
   end
 
   spec.subspec 'openssl_base_static' do |s|
-    s.preserve_path = 'external/openssl/include/{ios/mac}'
+    s.preserve_path = 'external/openssl/include/{ios,mac}'
 
     s.ios.public_header_files = 'external/openssl/include/ios/openssl/*'
     s.osx.public_header_files = 'external/openssl/include/mac/openssl/*'
