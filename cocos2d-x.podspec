@@ -24,7 +24,7 @@ Pod::Spec.new do |spec|
     'MediaPlayer'
 
   spec.osx.frameworks =
-    'Foundation'
+    'Foundation',
     'GameController'
 
   spec.library =
@@ -79,6 +79,7 @@ Pod::Spec.new do |spec|
   end
 
   spec.subspec 'cocos2dx_macros_individual' do |s|
+    s.preserve_path = 'dummy_path'
     s.ios.xcconfig = {
       'GCC_PREPROCESSOR_DEFINITIONS' => [
         'CC_TARGET_OS_IPHONE'
@@ -96,7 +97,9 @@ Pod::Spec.new do |spec|
   spec.subspec 'cocos2dx_prebuilt_base' do |s|
     s.osx.preserve_path = 'prebuilt/include/mac'
 
+    # s.osx.source_files = 'prebuilt/include/mac/**/*'
     s.osx.public_header_files = 'prebuilt/include/mac/**/*'
+    s.osx.header_mappings_dir = 'prebuilt/include/mac'
 
     s.xcconfig = {
       'HEADER_SEARCH_PATHS' => [
@@ -109,6 +112,16 @@ Pod::Spec.new do |spec|
     }
 
     s.dependency 'cocos2d-x/cocos2dx_macros_individual'
+    s.dependency 'cocos2d-x/cocos_curl_static'
+    s.dependency 'cocos2d-x/websockets_static'
+    s.dependency 'cocos2d-x/cocos_chipmunk_static'
+    s.dependency 'cocos2d-x/cocos_webp_static'
+    s.dependency 'cocos2d-x/cocos_tiff_static'
+    s.dependency 'cocos2d-x/cocos_png_static'
+    s.dependency 'cocos2d-x/cocos_jpeg_static'
+    s.dependency 'cocos2d-x/cocos_freetype2_static'
+
+    s.osx.dependency 'cocos2d-x/glfw_static'
   end
 
   spec.subspec 'debug' do |s|
