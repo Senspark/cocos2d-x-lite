@@ -26,7 +26,7 @@ Pod::Spec.new do |spec|
     'Foundation',
     'IOKit',
     'OpenGL',
-    'QuartzCore',
+    'QuartzCore'
 
   spec.requires_arc = false
   spec.header_mappings_dir = '.'
