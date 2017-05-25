@@ -385,7 +385,8 @@ Pod::Spec.new do |spec|
   end
 
   spec.subspec 'cocos3d_static' do |s|
-    s.source_files = 'cocos/3d/*.{h,cpp}'
+    s.source_files = 'cocos/3d/*.{h,inl,cpp}'
+    s.public_header_files = 'cocos/3d/*.{h,inl}'
     s.dependency 'cocos2d-x/search_path_cocos'
     s.dependency 'cocos2d-x/rapidjson_static'
   end
