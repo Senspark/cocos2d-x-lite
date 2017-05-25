@@ -26,7 +26,8 @@ Pod::Spec.new do |spec|
     'Foundation',
     'IOKit',
     'OpenGL',
-    'QuartzCore'
+    'QuartzCore',
+    'GameController'
 
   spec.requires_arc = false
   spec.header_mappings_dir = '.'
@@ -191,8 +192,9 @@ Pod::Spec.new do |spec|
 
   spec.subspec 'cocos2dx_platform_static' do |s|
     s.ios.source_files = 'cocos/platform/ios/*'
-    s.osx.source_files = 'cocos/platform/mac/*'
+    s.osx.source_files = 'cocos/platform/mac/*', 'cocos/platform/desktop/*'
     s.dependency 'cocos2d-x/cocos2dx_platform_base_static'
+    s.osx.dependency 'cocos2d-x/glfw_static'
   end
 
   spec.subspec 'audioengine_base_static' do |s|
@@ -434,5 +436,13 @@ Pod::Spec.new do |spec|
 
     s.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/bullet' }
     s.dependency 'cocos2d-x/search_path_external'
+  end
+
+  spec.subspec 'glfw_static' do |s|
+    s.platform = :osx
+    s.preserve_path = 'external/glfw3'
+    s.public_header_files = 'external/glfw3/include/mac/*'
+    s.vendored_library = 'external/glfw3/prebuilt/mac/*'
+    s.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/glfw3/include/mac' }
   end
 end
