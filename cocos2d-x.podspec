@@ -18,16 +18,18 @@ Pod::Spec.new do |spec|
   }
 
   spec.ios.frameworks = 
-    'Foundation'
+    'CoreMotion',
+    'Foundation',
+    'GameController',
+    'MediaPlayer'
 
   spec.osx.frameworks =
-    'ApplicationServices',
-    'Cocoa',
-    'Foundation',
-    'IOKit',
-    'OpenGL',
-    'QuartzCore',
+    'Foundation'
     'GameController'
+
+  spec.library =
+    'z',
+    'iconv'
 
   spec.requires_arc = false
   spec.header_mappings_dir = '.'
