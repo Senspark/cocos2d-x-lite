@@ -28,8 +28,8 @@ GUI/CCScrollView/CCScrollView.cpp \
 GUI/CCScrollView/CCTableView.cpp \
 GUI/CCScrollView/CCTableViewCell.cpp \
 physics-nodes/CCPhysicsDebugNode.cpp \
-physics-nodes/CCPhysicsSprite.cpp \
-Particle3D/CCParticle3DAffector.cpp \
+physics-nodes/CCPhysicsSprite.cpp
+# Particle3D/CCParticle3DAffector.cpp \
 Particle3D/CCParticle3DEmitter.cpp \
 Particle3D/CCParticle3DRender.cpp \
 Particle3D/CCParticleSystem3D.cpp \
