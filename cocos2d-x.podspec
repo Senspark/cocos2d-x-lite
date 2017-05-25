@@ -44,7 +44,27 @@ Pod::Spec.new do |spec|
     s.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external' }
   end
 
-  spec.subspec 'cocos2dx_macros_base' do |s|
+  spec.subspec 'cocos2dx_macros_debug' do |s|
+    s.preserve_path = 'dummy_path'
+    s.xcconfig = { 
+      'GCC_PREPROCESSOR_DEFINITIONS' => [
+        'COCOS2D_DEBUG=1',
+        'USE_FILE32API'
+      ].join(' '),
+    }
+  end
+
+  spec.subspec 'cocos2dx_macros_release' do |s|
+    s.preserve_path = 'dummy_path'
+    s.xcconfig = {
+      'GCC_PREPROCESSOR_DEFINITIONS' => [
+        'NDEBUG',
+        'USE_FILE32API'
+      ].join(' ')
+    }
+  end
+
+  spec.subspec 'cocos2dx_macros_common' do |s|
     s.preserve_path = 'dummy_path'
     s.xcconfig = { 
       'GCC_PREPROCESSOR_DEFINITIONS[config=Debug]' => [
@@ -58,7 +78,7 @@ Pod::Spec.new do |spec|
     }
   end
 
-  spec.subspec 'cocos2dx_macros' do |s|
+  spec.subspec 'cocos2dx_macros_individual' do |s|
     s.ios.xcconfig = {
       'GCC_PREPROCESSOR_DEFINITIONS' => [
         'CC_TARGET_OS_IPHONE'
@@ -71,7 +91,36 @@ Pod::Spec.new do |spec|
         '_USRDLL'
       ].join(' ')
     }
-    s.dependency 'cocos2d-x/cocos2dx_macros_base'
+  end
+
+  spec.subspec 'cocos2dx_prebuilt_base' do |s|
+    s.osx.preserve_path = 'prebuilt/include/mac'
+
+    s.osx.public_header_files = 'prebuilt/include/mac/**/*'
+
+    s.xcconfig = {
+      'HEADER_SEARCH_PATHS' => [
+        '$(PODS_ROOT)/Headers/Public/cocos2d-x/cocos',
+        '$(PODS_ROOT)/Headers/Public/cocos2d-x/cocos/editor-support',
+        '$(PODS_ROOT)/Headers/Public/cocos2d-x/extension',
+        '$(PODS_ROOT)/Headers/Public/cocos2d-x/external',
+        '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/poly2tri'
+      ].join(' ')
+    }
+
+    s.dependency 'cocos2d-x/cocos2dx_macros_individual'
+  end
+
+  spec.subspec 'debug' do |s|
+    s.osx.vendored_library = 'prebuilt/libs/mac/libcocos2d-x-debug.a'
+    s.dependency 'cocos2d-x/cocos2dx_prebuilt_base'
+    s.dependency 'cocos2d-x/cocos2dx_macros_debug'
+  end
+ 
+  spec.subspec 'release' do |s|
+    s.osx.vendored_library = 'prebuilt/libs/mac/libcocos2d-x-release.a'
+    s.dependency 'cocos2d-x/cocos2dx_prebuilt_base'
+    s.dependency 'cocos2d-x/cocos2dx_macros_release'
   end
 
   spec.subspec 'cocos2dx_internal_static' do |s|
@@ -127,7 +176,6 @@ Pod::Spec.new do |spec|
       'cocos/3d/CCSkeleton3D.h',
       'cocos/3d/CCSprite3D.h',
 
-
       'cocos/platform/*.h',
       'cocos/math/*.{h,inl}',
       'cocos/base/**/*.h',
@@ -157,7 +205,8 @@ Pod::Spec.new do |spec|
 
     s.dependency 'cocos2d-x/search_path_cocos'
     s.dependency 'cocos2d-x/search_path_external'
-    s.dependency 'cocos2d-x/cocos2dx_macros'
+    s.dependency 'cocos2d-x/cocos2dx_macros_common'
+    s.dependency 'cocos2d-x/cocos2dx_macros_individual'
 
     s.dependency 'cocos2d-x/cocos_freetype2_static'
     s.dependency 'cocos2d-x/cocos_jpeg_static'
