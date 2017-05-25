@@ -49,7 +49,7 @@ Pod::Spec.new do |spec|
         'COCOS2D_DEBUG=1',
         'USE_FILE32API'
       ].join(' '),
-      'GCC_PREPROCESSOR_DEFINITIONS[config=Debug]' => [
+      'GCC_PREPROCESSOR_DEFINITIONS[config=Release]' => [
         'NDEBUG',
         'USE_FILE32API'
       ].join(' ')
