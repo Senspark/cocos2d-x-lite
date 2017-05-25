@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "03DC1B4CF83808567B5C94704469F907CEDC6165",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "03DC1B4CF83808567B5C94704469F907CEDC6165" : 9223372036854775807,
+    "63C044CCB2D5231299CD22D4FB845DC55A5385FB" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "6E09C8A2-8645-437D-9671-EEA9B66CBA19",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "03DC1B4CF83808567B5C94704469F907CEDC6165" : "cocos2d\/",
+    "63C044CCB2D5231299CD22D4FB845DC55A5385FB" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "cocos2d_libs",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "build\/cocos2d_libs.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Senspark\/cocos2d-x-3.15.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "03DC1B4CF83808567B5C94704469F907CEDC6165"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/senspark\/sde2",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "63C044CCB2D5231299CD22D4FB845DC55A5385FB"
+    }
+  ]
+}

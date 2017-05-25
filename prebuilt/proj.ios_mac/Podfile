@@ -1,0 +1,7 @@
+
+abstract_target 'common' do
+    pod 'cocos2d-x/cocos2dx_static', :path => '../..'
+    
+    target 'libcocos2d_prebuilt_desktop'
+    target 'libcocos2d_prebuilt_mobile'
+end
