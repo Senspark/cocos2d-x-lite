@@ -108,9 +108,16 @@ Pod::Spec.new do |spec|
   end
 
   spec.subspec 'prebuilt' do |s|
+    s.ios.source_files = 'prebuilt/include/ios/**/*'
     s.osx.source_files = 'prebuilt/include/mac/**/*'
+
+    s.ios.public_header_files = 'prebuilt/include/ios/**/*'
     s.osx.public_header_files = 'prebuilt/include/mac/**/*'
+
+    s.ios.header_mappings_dir = 'prebuilt/include/ios'
     s.osx.header_mappings_dir = 'prebuilt/include/mac'
+
+    s.ios.xcconfig = { 'LIBRARY_SEARCH_PATHS' => '$(PODS_ROOT)/cocos2d-x/prebuilt/libs/ios' }
     s.osx.xcconfig = { 'LIBRARY_SEARCH_PATHS' => '$(PODS_ROOT)/cocos2d-x/prebuilt/libs/mac' }
 
     s.ios.preserve_paths = 'prebuilt/libs/ios/*.a'
