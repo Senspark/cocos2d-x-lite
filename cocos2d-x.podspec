@@ -34,6 +34,11 @@ Pod::Spec.new do |spec|
   spec.requires_arc = false
   spec.header_mappings_dir = '.'
 
+  spec.prepare_command = <<-CMD
+    unzip cocos2d-x/prebuilt/libs/mac/libcocos2d-x-debug.a.zip -d cocos2d-x/prebuilt/libs/mac'
+    unzip cocos2d-x/prebuilt/libs/ios/libcocos2d-x-debug.a.zip -d cocos2d-x/prebuilt/libs/ios'
+  CMD
+
   spec.subspec 'search_path_cocos' do |s|
     s.preserve_path = 'dummy_path'
     s.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/cocos' }
@@ -106,10 +111,8 @@ Pod::Spec.new do |spec|
     s.osx.header_mappings_dir = 'prebuilt/include/mac'
     s.osx.xcconfig = { 'LIBRARY_SEARCH_PATHS' => '$(PODS_ROOT)/cocos2d-x/prebuilt/libs/mac' }
 
-    s.ios.preserve_paths = 'prebuilt/libs/ios'
-    s.osx.preserve_paths = 'prebuilt/libs/mac'
-
-    s.osx.prepare_command = 'unzip cocos2d-x/prebuilt/libs/mac/libcocos2d-x-debug.a.zip -d cocos2d-x/prebuilt/libs/mac'
+    s.ios.preserve_paths = 'prebuilt/libs/ios/*.a'
+    s.osx.preserve_paths = 'prebuilt/libs/mac/*.a'
 
     s.dependency 'cocos2d-x/cocos2dx_macros_common'
     s.dependency 'cocos2d-x/cocos2dx_prebuilt_base'
