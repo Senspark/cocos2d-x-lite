@@ -21,7 +21,15 @@ post_install do |installer|
         
         # Check debug configuration is enough.
         if target.build_configurations[0].build_settings['SDKROOT'] == 'macosx'
-           is_osx = true
+            is_osx = true
+        end
+        
+        target.build_configurations.each do |config|
+            if config.name == 'Debug'
+                config.build_settings['GCC_GENERATE_DEBUGGING_SYMBOLS'] = 'YES'
+            else
+                config.build_settings['GCC_GENERATE_DEBUGGING_SYMBOLS'] = 'NO'
+            end
         end
         
         header_files = Set.new

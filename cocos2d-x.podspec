@@ -44,26 +44,6 @@ Pod::Spec.new do |spec|
     s.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external' }
   end
 
-  spec.subspec 'cocos2dx_macros_debug' do |s|
-    s.preserve_path = 'dummy_path'
-    s.xcconfig = { 
-      'GCC_PREPROCESSOR_DEFINITIONS' => [
-        'COCOS2D_DEBUG=1',
-        'USE_FILE32API'
-      ].join(' '),
-    }
-  end
-
-  spec.subspec 'cocos2dx_macros_release' do |s|
-    s.preserve_path = 'dummy_path'
-    s.xcconfig = {
-      'GCC_PREPROCESSOR_DEFINITIONS' => [
-        'NDEBUG',
-        'USE_FILE32API'
-      ].join(' ')
-    }
-  end
-
   spec.subspec 'cocos2dx_macros_common' do |s|
     s.preserve_path = 'dummy_path'
     s.xcconfig = { 
@@ -95,12 +75,6 @@ Pod::Spec.new do |spec|
   end
 
   spec.subspec 'cocos2dx_prebuilt_base' do |s|
-    s.osx.preserve_path = 'prebuilt/include/mac'
-
-    # s.osx.source_files = 'prebuilt/include/mac/**/*'
-    s.osx.public_header_files = 'prebuilt/include/mac/**/*'
-    s.osx.header_mappings_dir = 'prebuilt/include/mac'
-
     s.xcconfig = {
       'HEADER_SEARCH_PATHS' => [
         '$(PODS_ROOT)/Headers/Public/cocos2d-x/cocos',
@@ -108,7 +82,9 @@ Pod::Spec.new do |spec|
         '$(PODS_ROOT)/Headers/Public/cocos2d-x/extension',
         '$(PODS_ROOT)/Headers/Public/cocos2d-x/external',
         '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/poly2tri'
-      ].join(' ')
+      ].join(' '),
+      'OTHER_LDFLAGS[config=Debug]'   => '$(inherited) -l"cocos2d-x-debug"',
+      'OTHER_LDFLAGS[config=Release]' => '$(inherited) -l"cocos2d-x-release"'
     }
 
     s.dependency 'cocos2d-x/cocos2dx_macros_individual'
@@ -124,16 +100,19 @@ Pod::Spec.new do |spec|
     s.osx.dependency 'cocos2d-x/glfw_static'
   end
 
-  spec.subspec 'debug' do |s|
-    s.osx.vendored_library = 'prebuilt/libs/mac/libcocos2d-x-debug.a'
+  spec.subspec 'prebuilt' do |s|
+    s.osx.source_files = 'prebuilt/include/mac/**/*'
+    s.osx.public_header_files = 'prebuilt/include/mac/**/*'
+    s.osx.header_mappings_dir = 'prebuilt/include/mac'
+    s.osx.xcconfig = { 'LIBRARY_SEARCH_PATHS' => '$(PODS_ROOT)/cocos2d-x/prebuilt/libs/mac' }
+
+    s.ios.preserve_paths = 'prebuilt/libs/ios'
+    s.osx.preserve_paths = 'prebuilt/libs/mac'
+
+    s.osx.prepare_command = 'unzip cocos2d-x/prebuilt/libs/mac/libcocos2d-x-debug.a.zip -d cocos2d-x/prebuilt/libs/mac'
+
+    s.dependency 'cocos2d-x/cocos2dx_macros_common'
     s.dependency 'cocos2d-x/cocos2dx_prebuilt_base'
-    s.dependency 'cocos2d-x/cocos2dx_macros_debug'
-  end
- 
-  spec.subspec 'release' do |s|
-    s.osx.vendored_library = 'prebuilt/libs/mac/libcocos2d-x-release.a'
-    s.dependency 'cocos2d-x/cocos2dx_prebuilt_base'
-    s.dependency 'cocos2d-x/cocos2dx_macros_release'
   end
 
   spec.subspec 'cocos2dx_internal_static' do |s|
