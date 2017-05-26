@@ -24,14 +24,22 @@ post_install do |installer|
            is_osx = true
         end
         
-        # Find all header files in headers build phase.
         header_files = Set.new
-        target.headers_build_phase.files_references.each do |file_ref|
-            relative_path = (Pathname.new file_ref.real_path)
-                .relative_path_from(
-                    Pathname.new File.join(Dir.pwd, cocos2d_x_dir)).to_s
-            header_files.add(relative_path)
-        end
+        lam = lambda { |file_ref|
+            extension = File.extname(file_ref.path)
+            if ['.h', '.hpp', '.inl'].include?(extension)
+                relative_path = (Pathname.new file_ref.real_path)
+                    .relative_path_from(
+                        Pathname.new File.join(Dir.pwd, cocos2d_x_dir)).to_s
+                header_files.add(relative_path)
+            end
+        }
+        
+        # Find all header files in headers build phase.
+        target.headers_build_phase.files_references.each(&lam)
+        
+        # Xcode treats .inl files as compile sources.
+        target.source_build_phase.files_references.each(&lam)
         
         # Remove the headers build phase because it copies header files without
         # preserving the directory paths.
@@ -40,7 +48,7 @@ post_install do |installer|
         
         # Manually recursively copy all files in cocos2d-x.
         header_pattern = '{cocos,extensions,external}/**/*.{h,hpp,inl}'
-        Dir.glob(cocos2d_x_dir + header_pattern).each{|file|
+        Dir.glob(cocos2d_x_dir + header_pattern).each{ |file|
             relative_path = (Pathname.new file)
                 .relative_path_from(Pathname.new cocos2d_x_dir).to_s
             if header_files.include?(relative_path)
