@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		56331E3CE9877E83750F01C2 /* libPods-common-libcocos2d_prebuilt_mobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E7202B182768E673ACAEA91C /* libPods-common-libcocos2d_prebuilt_mobile.a */; };
-		7EAC818442C1F1CD79CE7601 /* libPods-common-libcocos2d_prebuilt_desktop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9AF1EC0BB9D9D5D2D91955C /* libPods-common-libcocos2d_prebuilt_desktop.a */; };
+		98AC8341E16BB674A029CF4E /* libPods-common-libcocos2d_prebuilt_desktop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CCBA82F05CEBBA9787008F55 /* libPods-common-libcocos2d_prebuilt_desktop.a */; };
+		B2F5C3291347093823E8164D /* libPods-common-libcocos2d_prebuilt_mobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 912C3B959031C45EAF30405A /* libPods-common-libcocos2d_prebuilt_mobile.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		6F5727B91ED6ECCF00021988 /* CopyFiles */ = {
+		6F36787C1ED7C777006C89D9 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
@@ -24,14 +24,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		419409EDFC227042B57A5688 /* Pods-common-libcocos2d_prebuilt_mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-common-libcocos2d_prebuilt_mobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-common-libcocos2d_prebuilt_mobile/Pods-common-libcocos2d_prebuilt_mobile.debug.xcconfig"; sourceTree = "<group>"; };
-		4E5841048F02FFBBE73E1754 /* Pods-common-libcocos2d_prebuilt_desktop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-common-libcocos2d_prebuilt_desktop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-common-libcocos2d_prebuilt_desktop/Pods-common-libcocos2d_prebuilt_desktop.debug.xcconfig"; sourceTree = "<group>"; };
+		27C4A15496AC5D29EC9CC09B /* Pods-common-libcocos2d_prebuilt_desktop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-common-libcocos2d_prebuilt_desktop.release.xcconfig"; path = "Pods/Target Support Files/Pods-common-libcocos2d_prebuilt_desktop/Pods-common-libcocos2d_prebuilt_desktop.release.xcconfig"; sourceTree = "<group>"; };
 		6F5727AC1ED6E18B00021988 /* libcocos2d_prebuilt_desktop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcocos2d_prebuilt_desktop.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F5727AD1ED6E19400021988 /* libcocos2d_prebuilt_mobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcocos2d_prebuilt_mobile.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		C48099271FBEB94AFC711D1A /* Pods-common-libcocos2d_prebuilt_desktop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-common-libcocos2d_prebuilt_desktop.release.xcconfig"; path = "Pods/Target Support Files/Pods-common-libcocos2d_prebuilt_desktop/Pods-common-libcocos2d_prebuilt_desktop.release.xcconfig"; sourceTree = "<group>"; };
-		E6A40A94EC2F11412AD96C03 /* Pods-common-libcocos2d_prebuilt_mobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-common-libcocos2d_prebuilt_mobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-common-libcocos2d_prebuilt_mobile/Pods-common-libcocos2d_prebuilt_mobile.release.xcconfig"; sourceTree = "<group>"; };
-		E7202B182768E673ACAEA91C /* libPods-common-libcocos2d_prebuilt_mobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-common-libcocos2d_prebuilt_mobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E9AF1EC0BB9D9D5D2D91955C /* libPods-common-libcocos2d_prebuilt_desktop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-common-libcocos2d_prebuilt_desktop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		912C3B959031C45EAF30405A /* libPods-common-libcocos2d_prebuilt_mobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-common-libcocos2d_prebuilt_mobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB4A438B4CD21B7770EA8CAD /* Pods-common-libcocos2d_prebuilt_mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-common-libcocos2d_prebuilt_mobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-common-libcocos2d_prebuilt_mobile/Pods-common-libcocos2d_prebuilt_mobile.debug.xcconfig"; sourceTree = "<group>"; };
+		C8C7A6B174229B1E75164ABD /* Pods-common-libcocos2d_prebuilt_mobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-common-libcocos2d_prebuilt_mobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-common-libcocos2d_prebuilt_mobile/Pods-common-libcocos2d_prebuilt_mobile.release.xcconfig"; sourceTree = "<group>"; };
+		CCBA82F05CEBBA9787008F55 /* libPods-common-libcocos2d_prebuilt_desktop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-common-libcocos2d_prebuilt_desktop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6C77473382ECEFF5DFB4F2D /* Pods-common-libcocos2d_prebuilt_desktop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-common-libcocos2d_prebuilt_desktop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-common-libcocos2d_prebuilt_desktop/Pods-common-libcocos2d_prebuilt_desktop.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,7 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EAC818442C1F1CD79CE7601 /* libPods-common-libcocos2d_prebuilt_desktop.a in Frameworks */,
+				98AC8341E16BB674A029CF4E /* libPods-common-libcocos2d_prebuilt_desktop.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,7 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56331E3CE9877E83750F01C2 /* libPods-common-libcocos2d_prebuilt_mobile.a in Frameworks */,
+				B2F5C3291347093823E8164D /* libPods-common-libcocos2d_prebuilt_mobile.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,11 +58,22 @@
 			isa = PBXGroup;
 			children = (
 				6F5727AE1ED6E23600021988 /* Products */,
-				705BB1F10065C7720578FE9B /* Pods */,
-				BF670D19E6F943B61C9CD3D1 /* Frameworks */,
+				30AB13CF3C0865134A75D252 /* Pods */,
+				D4313FD39E4E0B747943CE0C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 0;
+		};
+		30AB13CF3C0865134A75D252 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D6C77473382ECEFF5DFB4F2D /* Pods-common-libcocos2d_prebuilt_desktop.debug.xcconfig */,
+				27C4A15496AC5D29EC9CC09B /* Pods-common-libcocos2d_prebuilt_desktop.release.xcconfig */,
+				AB4A438B4CD21B7770EA8CAD /* Pods-common-libcocos2d_prebuilt_mobile.debug.xcconfig */,
+				C8C7A6B174229B1E75164ABD /* Pods-common-libcocos2d_prebuilt_mobile.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
 		};
 		6F5727AE1ED6E23600021988 /* Products */ = {
 			isa = PBXGroup;
@@ -73,56 +84,28 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		705BB1F10065C7720578FE9B /* Pods */ = {
+		D4313FD39E4E0B747943CE0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4E5841048F02FFBBE73E1754 /* Pods-common-libcocos2d_prebuilt_desktop.debug.xcconfig */,
-				C48099271FBEB94AFC711D1A /* Pods-common-libcocos2d_prebuilt_desktop.release.xcconfig */,
-				419409EDFC227042B57A5688 /* Pods-common-libcocos2d_prebuilt_mobile.debug.xcconfig */,
-				E6A40A94EC2F11412AD96C03 /* Pods-common-libcocos2d_prebuilt_mobile.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		BF670D19E6F943B61C9CD3D1 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				E9AF1EC0BB9D9D5D2D91955C /* libPods-common-libcocos2d_prebuilt_desktop.a */,
-				E7202B182768E673ACAEA91C /* libPods-common-libcocos2d_prebuilt_mobile.a */,
+				CCBA82F05CEBBA9787008F55 /* libPods-common-libcocos2d_prebuilt_desktop.a */,
+				912C3B959031C45EAF30405A /* libPods-common-libcocos2d_prebuilt_mobile.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		1551A33D158F2AB200E66CFE /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A07A4CB11783777C0073F6A7 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
 		1551A33E158F2AB200E66CFE /* libcocos2d_prebuilt_desktop */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1551A34C158F2AB200E66CFE /* Build configuration list for PBXNativeTarget "libcocos2d_prebuilt_desktop" */;
 			buildPhases = (
-				D086BB258D899CAF4C5CE5C7 /* [CP] Check Pods Manifest.lock */,
+				8FBB32F75D6C157CEEAC67FE /* [CP] Check Pods Manifest.lock */,
 				1551A33B158F2AB200E66CFE /* Sources */,
 				1551A33C158F2AB200E66CFE /* Frameworks */,
-				1551A33D158F2AB200E66CFE /* Headers */,
-				F618A3FEEA970062703F79D8 /* [CP] Copy Pods Resources */,
-				6F5727B91ED6ECCF00021988 /* CopyFiles */,
+				6F36787C1ED7C777006C89D9 /* CopyFiles */,
+				6F36787D1ED7C7A9006C89D9 /* Resources */,
+				1F27C857FB0FE574CC729069 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -137,11 +120,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A07A4D611783777C0073F6A7 /* Build configuration list for PBXNativeTarget "libcocos2d_prebuilt_mobile" */;
 			buildPhases = (
-				A39E365835AE47853BF09408 /* [CP] Check Pods Manifest.lock */,
+				792AD7EE1B1A0805CE4216CB /* [CP] Check Pods Manifest.lock */,
 				A07A4C251783777C0073F6A7 /* Sources */,
 				A07A4CAD1783777C0073F6A7 /* Frameworks */,
-				A07A4CB11783777C0073F6A7 /* Headers */,
-				D6F3BAA07A7E3FA14481B07F /* [CP] Copy Pods Resources */,
+				4FB3C89CF40C7C54C2673923 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -179,38 +161,33 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		6F36787D1ED7C7A9006C89D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXShellScriptBuildPhase section */
-		A39E365835AE47853BF09408 /* [CP] Check Pods Manifest.lock */ = {
+		1F27C857FB0FE574CC729069 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "[CP] Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-common-libcocos2d_prebuilt_desktop/Pods-common-libcocos2d_prebuilt_desktop-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D086BB258D899CAF4C5CE5C7 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		D6F3BAA07A7E3FA14481B07F /* [CP] Copy Pods Resources */ = {
+		4FB3C89CF40C7C54C2673923 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -225,19 +202,34 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-common-libcocos2d_prebuilt_mobile/Pods-common-libcocos2d_prebuilt_mobile-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F618A3FEEA970062703F79D8 /* [CP] Copy Pods Resources */ = {
+		792AD7EE1B1A0805CE4216CB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-common-libcocos2d_prebuilt_desktop/Pods-common-libcocos2d_prebuilt_desktop-resources.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8FBB32F75D6C157CEEAC67FE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -339,7 +331,7 @@
 		};
 		1551A34D158F2AB200E66CFE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E5841048F02FFBBE73E1754 /* Pods-common-libcocos2d_prebuilt_desktop.debug.xcconfig */;
+			baseConfigurationReference = D6C77473382ECEFF5DFB4F2D /* Pods-common-libcocos2d_prebuilt_desktop.debug.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = "";
@@ -349,7 +341,7 @@
 		};
 		1551A34E158F2AB200E66CFE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C48099271FBEB94AFC711D1A /* Pods-common-libcocos2d_prebuilt_desktop.release.xcconfig */;
+			baseConfigurationReference = 27C4A15496AC5D29EC9CC09B /* Pods-common-libcocos2d_prebuilt_desktop.release.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = "";
@@ -360,7 +352,7 @@
 		};
 		A07A4D621783777C0073F6A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 419409EDFC227042B57A5688 /* Pods-common-libcocos2d_prebuilt_mobile.debug.xcconfig */;
+			baseConfigurationReference = AB4A438B4CD21B7770EA8CAD /* Pods-common-libcocos2d_prebuilt_mobile.debug.xcconfig */;
 			buildSettings = {
 				ENABLE_BITCODE = NO;
 				EXECUTABLE_PREFIX = "";
@@ -374,7 +366,7 @@
 		};
 		A07A4D631783777C0073F6A7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E6A40A94EC2F11412AD96C03 /* Pods-common-libcocos2d_prebuilt_mobile.release.xcconfig */;
+			baseConfigurationReference = C8C7A6B174229B1E75164ABD /* Pods-common-libcocos2d_prebuilt_mobile.release.xcconfig */;
 			buildSettings = {
 				ENABLE_BITCODE = NO;
 				EXECUTABLE_PREFIX = "";
