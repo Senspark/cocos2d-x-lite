@@ -1,6 +1,5 @@
-
 abstract_target 'common' do
-    pod 'cocos2d-x/cocos2dx_static', :git => 'https://github.com/Senspark/cocos2d-x-3.15'
+    pod 'cocos2d-x/prebuilt', :git => 'https://github.com/Senspark/cocos2d-x-3.15'
     
     target 'HelloCpp-desktop'
     target 'HelloCpp-mobile'
