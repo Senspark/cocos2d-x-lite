@@ -35,8 +35,10 @@ Pod::Spec.new do |spec|
   spec.header_mappings_dir = '.'
 
   spec.prepare_command = <<-CMD
-    unzip prebuilt/libs/mac/libcocos2d-x-debug.a.zip -d prebuilt/libs/mac
-    unzip prebuilt/libs/ios/libcocos2d-x-debug.a.zip -d prebuilt/libs/ios
+    7z x prebuilt/libs/ios/libcocos2d-x-debug.7z   -oprebuilt/libs/ios
+    7z x prebuilt/libs/ios/libcocos2d-x-release.7z -oprebuilt/libs/ios
+    7z x prebuilt/libs/mac/libcocos2d-x-debug.7z   -oprebuilt/libs/mac
+    7z x prebuilt/libs/mac/libcocos2d-x-release.7z -oprebuilt/libs/mac
   CMD
 
   spec.subspec 'search_path_cocos' do |s|
