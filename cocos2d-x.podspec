@@ -36,10 +36,10 @@ Pod::Spec.new do |spec|
 
   spec.prepare_command = <<-CMD
     echo settings set target.source-map /Volumes/Setup/Android/projects/senspark/sde2/cocos2d/ $(pwd) > ~/.lldbinit-Xcode
-    7z x prebuilt/libs/ios/libcocos2d-x-debug.7z   -oprebuilt/libs/ios
-    7z x prebuilt/libs/ios/libcocos2d-x-release.7z -oprebuilt/libs/ios
-    7z x prebuilt/libs/mac/libcocos2d-x-debug.7z   -oprebuilt/libs/mac
-    7z x prebuilt/libs/mac/libcocos2d-x-release.7z -oprebuilt/libs/mac
+    7z x prebuilt/libs/ios/libcocos2d-x-debug.7z   -oprebuilt/libs/ios Y
+    7z x prebuilt/libs/ios/libcocos2d-x-release.7z -oprebuilt/libs/ios Y
+    7z x prebuilt/libs/mac/libcocos2d-x-debug.7z   -oprebuilt/libs/mac Y
+    7z x prebuilt/libs/mac/libcocos2d-x-release.7z -oprebuilt/libs/mac Y
   CMD
 
   spec.subspec 'search_path_cocos' do |s|
