@@ -11,6 +11,8 @@
 
 ## Integration
 
+- Dependencies: install 7z via brew `brew install p7zip`
+
 - Modify `Podfile`
 
 ```
