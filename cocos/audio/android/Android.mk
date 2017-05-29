@@ -68,5 +68,5 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../include \
 
 include $(BUILD_STATIC_LIBRARY)
 
-$(call import-module,android-specific/tremolo)
-$(call import-module,android-specific/pvmp3dec)
+$(call import-module, external/android-specific/tremolo)
+$(call import-module, external/android-specific/pvmp3dec)
