@@ -15,4 +15,7 @@ std::unique_ptr<AppDelegate> appDelegate;
 void cocos_android_app_init(JNIEnv* env) {
     LOGD("cocos_android_app_init");
     appDelegate.reset(new AppDelegate());
+
+    JavaVM* vm;
+    env->GetJavaVM(&vm);
 }
