@@ -1,99 +1,125 @@
-import org.apache.tools.ant.taskdefs.condition.Os
-
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "25.0.0"
+    compileSdkVersion 25
+    buildToolsVersion '25.0.3'
+    flavorDimensions 'screenSize'
 
     defaultConfig {
-        applicationId "org.cocos2dx.hellocpp"
-        minSdkVersion 10
-        targetSdkVersion PROP_TARGET_SDK_VERSION
+        minSdkVersion 9
+        targetSdkVersion 25
+
+        applicationId 'org.cocos2dx.hellocpp'
+
         versionCode 1
-        versionName "1.0"
+        versionName '1.0.0'
+
+        multiDexEnabled true
 
         externalNativeBuild {
             ndkBuild {
-                if (!project.hasProperty("PROP_NDK_MODE") || PROP_NDK_MODE.compareTo('none') != 0) {
-                    // skip the NDK Build step if PROP_NDK_MODE is none
-                    targets 'MyGame'
-                    arguments 'NDK_TOOLCHAIN_VERSION=4.9'
-                    arguments 'APP_PLATFORM=android-'+PROP_TARGET_SDK_VERSION
-                    
-                    def module_paths = [project.file("../../cocos2d").absolutePath,
-                                        project.file("../../cocos2d/cocos").absolutePath,
-                                        project.file("../../cocos2d/external").absolutePath]
-                    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-                        // should use '/'
-                        module_paths = module_paths.collect {it.replaceAll('\\\\', '/')}
-                        arguments 'NDK_MODULE_PATH=' + module_paths.join(";")
-                    }
-                    else {
-                        arguments 'NDK_MODULE_PATH=' + module_paths.join(':')
-                    }
-                    
-                    arguments '-j' + Runtime.runtime.availableProcessors()
-                    abiFilters.addAll(PROP_APP_ABI.split(':').collect{it as String})
-                }
+                targets 'cocos2dcpp'
+
+                arguments 'NDK_TOOLCHAIN_VERSION=clang'
+                arguments 'APP_STL=c++_static'
+                arguments 'APP_PLATFORM=android-9'
+                arguments 'APP_LDFLAGS=-latomic'
+
+                // http://stackoverflow.com/questions/42579759/how-to-change-android-gradle-ndk-j-jobs-flag-value-for-clean-task
+                arguments '-j' + Runtime.runtime.availableProcessors()
+
+                cppFlags += '-frtti'
+                cppFlags += '-fsigned-char'
             }
         }
-    }
 
-    sourceSets.main {
-        java.srcDir "src"
-        res.srcDir "res"
-        manifest.srcFile "AndroidManifest.xml"
-        assets.srcDir "../../Resources"
+        ndk {
+            abiFilters 'armeabi', 'armeabi-v7a' //, 'x86'
+        }
     }
 
     externalNativeBuild {
         ndkBuild {
-            if (!project.hasProperty("PROP_NDK_MODE") || PROP_NDK_MODE.compareTo('none') != 0) {
-                // skip the NDK Build step if PROP_NDK_MODE is none
-                path "jni/Android.mk"
-            }
+            path 'src/main/jni/Android.mk'
         }
     }
 
-    signingConfigs {
+    sourceSets.main {
+    }
 
-       release {
-            if (project.hasProperty("RELEASE_STORE_FILE")) {
-                storeFile file(RELEASE_STORE_FILE)
-                storePassword RELEASE_STORE_PASSWORD
-                keyAlias RELEASE_KEY_ALIAS
-                keyPassword RELEASE_KEY_PASSWORD
-            }
+    signingConfigs {
+        release {
+            // Use your key store information here.
+            keyAlias 'key_alias'
+            keyPassword 'key_password'
+            storeFile file('file_path')
+            storePassword 'store_password'
         }
     }
 
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            if (project.hasProperty("RELEASE_STORE_FILE")) {
-                signingConfig signingConfigs.release
-            }
-
+            signingConfig signingConfigs.release
             externalNativeBuild {
                 ndkBuild {
                     arguments 'NDK_DEBUG=0'
+                    cppFlags += '-DCOCOS2D_DEBUG=1'
                 }
             }
         }
-
         debug {
             externalNativeBuild {
                 ndkBuild {
                     arguments 'NDK_DEBUG=1'
+                    cppFlags += '-DNDEBUG'
                 }
             }
         }
+    }
+
+    productFlavors {
+        iphone {
+            dimension 'screenSize'
+            manifestPlaceholders = [
+                    xlargeScreens: "false",
+                    largeScreens : "false",
+                    normalScreens: "false",
+                    smallScreens : "true",
+            ]
+        }
+        iphonehd {
+            dimension 'screenSize'
+            manifestPlaceholders = [
+                    xlargeScreens: "false",
+                    largeScreens : "true",
+                    normalScreens: "true",
+                    smallScreens : "false",
+            ]
+        }
+        ipadhd {
+            dimension 'screenSize'
+            manifestPlaceholders = [
+                    xlargeScreens: "true",
+                    largeScreens : "false",
+                    normalScreens: "false",
+                    smallScreens : "false",
+            ]
+        }
+    }
+
+    packagingOptions {
+        // Exclude metadata files.
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
     }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':libcocos2dx')
+
+    compile 'com.android.support:multidex:1.0.1'
 }
