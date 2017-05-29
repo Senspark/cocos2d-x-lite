@@ -12,6 +12,8 @@ Pod::Spec.new do |spec|
   spec.ios.deployment_target = '7.0'
   spec.osx.deployment_target = '10.7'
 
+  spec.default_subspecs = 'prebuilt'
+
   spec.source = {
     :git => 'https://github.com/Senspark/cocos2d-x-3.15.git',
     :branch => 'master'

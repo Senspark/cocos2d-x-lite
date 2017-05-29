@@ -14,7 +14,7 @@
 - Modify `Podfile`
 
 ```
-pod 'cocos2d-x/prebuilt', :git => 'https://github.com/Senspark/cocos2d-x-3.15'
+pod 'cocos2d-x', :git => 'https://github.com/Senspark/cocos2d-x-3.15'
 ```
 
 - Note: installing this pod will automatically overrides `~/.lldbinit-Xcode` to set the source files for debugging.
