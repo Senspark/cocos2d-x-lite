@@ -35,6 +35,7 @@ Pod::Spec.new do |spec|
   spec.header_mappings_dir = '.'
 
   spec.prepare_command = <<-CMD
+    echo settings set target.source-map /Volumes/Setup/Android/projects/senspark/sde2/cocos2d/ $(pwd) > ~/.lldbinit-Xcode
     7z x prebuilt/libs/ios/libcocos2d-x-debug.7z   -oprebuilt/libs/ios
     7z x prebuilt/libs/ios/libcocos2d-x-release.7z -oprebuilt/libs/ios
     7z x prebuilt/libs/mac/libcocos2d-x-debug.7z   -oprebuilt/libs/mac
@@ -82,6 +83,22 @@ Pod::Spec.new do |spec|
   end
 
   spec.subspec 'cocos2dx_prebuilt_base' do |s|
+    s.preserve_paths =
+      'cocos/**/*.{cpp,m,mm}',
+      'extensions/**/*.cpp',
+      'external/bullet/**/*.cpp',
+      'external/clipper/*/cpp',
+      'external/ConvertUTF/*.{c,cpp}',
+      'external/edtaa3func/*.{c,cpp}',
+      'external/flatbuffers/*.{cpp}',
+      'external/md5/*.c',
+      'external/poly2tri/**/*.cc',
+      'external/recast/**/*.cpp',
+      'external/tinyxml2/**.cpp',
+      'external/unzip/*.cpp',
+      'external/xxhash/*.c',
+      'external/xxtea/*.cpp'
+
     s.xcconfig = {
       'HEADER_SEARCH_PATHS' => [
         '$(PODS_ROOT)/Headers/Public/cocos2d-x/cocos',
