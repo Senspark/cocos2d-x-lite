@@ -1,12 +1,13 @@
 //
-// Prefix header for all source files of the 'iphone' target in the 'iphone' project
+// Prefix header for all source files of the 'iphone' target in the 'iphone'
+// project
 //
 
 #ifdef __OBJC__
-    #import <Foundation/Foundation.h>
-    #import <UIKit/UIKit.h>
-#endif
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#endif // __OBJC__
 
 #ifdef __cplusplus
-	#include "cocos2d.h"
-#endif
+#include <cocos2d.h>
+#endif // __cplusplus
