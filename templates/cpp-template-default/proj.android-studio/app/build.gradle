@@ -24,37 +24,6 @@ android {
         versionName '1.0.0'
 
         multiDexEnabled true
-
-        externalNativeBuild {
-            ndkBuild {
-                targets 'cocos2dcpp'
-
-                arguments 'NDK_TOOLCHAIN_VERSION=clang'
-                arguments 'APP_STL=c++_static'
-                arguments 'APP_PLATFORM=android-9'
-                arguments 'APP_LDFLAGS=-latomic'
-
-                // Fix issue: https://stackoverflow.com/questions/43495127/gradle-android-single-ndk-build-for-multiple-flavors
-                arguments "NDK_OUT=$projectDir/src/main/obj"
-                arguments "NDK_LIBS_OUT=$projectDir/src/main/libs"
-
-                // http://stackoverflow.com/questions/42579759/how-to-change-android-gradle-ndk-j-jobs-flag-value-for-clean-task
-                arguments '-j' + Runtime.runtime.availableProcessors()
-
-                cppFlags += '-frtti'
-                cppFlags += '-fsigned-char'
-            }
-        }
-
-        ndk {
-            abiFilters architectures
-        }
-    }
-
-    externalNativeBuild {
-        ndkBuild {
-            path 'src/main/jni/Android.mk'
-        }
     }
 
     splits {
@@ -69,6 +38,7 @@ android {
     sourceSets {
         main {
             assets.srcDir '../../Resources'
+            jni.srcDirs = []
             jniLibs.srcDir 'src/main/libs'
         }
     }
@@ -86,20 +56,13 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.release
-            externalNativeBuild {
-                ndkBuild {
-                    arguments 'NDK_DEBUG=0'
-                    cppFlags += '-DNDEBUG'
-                }
-            }
+            minifyEnabled false
+            debuggable false
+            jniDebuggable false
         }
         debug {
-            externalNativeBuild {
-                ndkBuild {
-                    arguments 'NDK_DEBUG=1'
-                    cppFlags += '-DCOCOS2D_DEBUG=1'
-                }
-            }
+            debuggable true
+            jniDebuggable true
         }
     }
 
@@ -162,6 +125,7 @@ android.applicationVariants.all { variant ->
             }
         }
     }
+
     // Change version codes.
     variant.outputs.each { output ->
         def architecture = output.getFilter(com.android.build.OutputFile.ABI)
@@ -205,31 +169,36 @@ android.applicationVariants.all { variant ->
     }
 }
 
-/// Fix issue where .so files are not copied to src/main/libs.
+/// External C++ build.
 tasks.whenTaskAdded { task ->
-    if (task.name.contains("externalNativeBuild")) {
-        task.doLast {
-            architectures.each { arch ->
-                println "[$arch] Install : libcocos2dcpp.so => $projectDir/src/main/libs/$arch/libcocos2dcpp.so"
-                exec {
-                    // Create directories.
-                    commandLine 'mkdir', '-p',
-                            "$projectDir/src/main/libs/$arch"
-                }
-                exec {
-                    // Copy while preserving timestamp.
-                    commandLine 'install', '-p',
-                            "$projectDir/src/main/obj/local/$arch/libcocos2dcpp.so",
-                            "$projectDir/src/main/libs/$arch/libcocos2dcpp.so"
-                }
-                exec {
-                    // Strip.
-                    def stripToolchain = (arch == 'x86'
-                            ? 'x86-4.9/prebuilt/darwin-x86_64/bin/i686-linux-android-strip'
-                            : 'arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-strip')
-                    commandLine "${project.android.ndkDirectory}/toolchains/$stripToolchain",
-                            '--strip-unneeded',
-                            "$projectDir/src/main/libs/$arch/libcocos2dcpp.so"
+    def name = task.name
+    def found = false
+    ['iphone', 'iphonehd', 'ipadhd'].each { size ->
+        ['debug', 'release'].each { mode ->
+            if (!found) {
+                if (name == "prepare${size.capitalize()}${mode.capitalize()}Dependencies") {
+                    task.doFirst {
+                        def ndkDir = android.ndkDirectory
+                        def cppFlags = '-frtti -fexceptions -fsigned-char'
+                        if (mode == 'debug') {
+                            cppFlags += ' -DCOCOS2D_DEBUG=1'
+                        } else {
+                            cppFlags += ' -DNDEBUG'
+                        }
+                        exec {
+                            commandLine "$ndkDir/ndk-build",
+                                    '-C', "$projectDir/src/main/jni",
+                                    '-j', Runtime.runtime.availableProcessors(),
+                                    'APP_STL=c++_static',
+                                    'NDK_TOOLCHAIN_VERSION=clang',
+                                    'APP_PLATFORM=android-9',
+                                    'APP_LDFLAGS=-latomic',
+                                    "APP_ABI=${architectures.join(' ')}",
+                                    "APP_CPPFLAGS=$cppFlags",
+                                    "NDK_DEBUG=${(mode == 'debug') ? 1 : 0}"
+                        }
+                    }
+                    found = true;
                 }
             }
         }
