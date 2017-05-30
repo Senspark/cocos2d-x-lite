@@ -3,7 +3,11 @@ import org.apache.commons.io.FilenameUtils
 apply plugin: 'com.android.application'
 
 /// Modify this variable to build the desired architectures.
-String[] architectures = ['armeabi', 'armeabi-v7a', 'x86']
+String[] architectures = [
+        'armeabi',
+        'armeabi-v7a',
+        'x86'
+]
 
 android {
     compileSdkVersion 25
