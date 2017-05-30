@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3AC74BA9DA0357B642D5E9A4 /* libPods-common-HelloCpp-mobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BD67F8A08377D661BF9F0C /* libPods-common-HelloCpp-mobile.a */; };
+		22AFBE1BE0A8D2C21550E38B /* libPods-common-HelloCpp-mobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3BD67F8A08377D661BF9F0C /* libPods-common-HelloCpp-mobile.a */; };
 		46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8419C43A87006E1F66 /* AppDelegate.cpp */; };
 		46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8419C43A87006E1F66 /* AppDelegate.cpp */; };
 		46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */; };
@@ -89,20 +89,20 @@
 		521A8E6219F0C34300D177D7 /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
 		521A8E6319F0C34300D177D7 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
 		521A8EA819F11F5000D177D7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
+		6F36788B1ED8178D006C89D9 /* libcocos2d-x-release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcocos2d-x-release.a"; path = "Pods/cocos2d-x/prebuilt/libs/mac/libcocos2d-x-release.a"; sourceTree = "<group>"; };
 		6F5727971ED6DB6000021988 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 		6F5727991ED6DB6900021988 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/usr/lib/libiconv.tbd; sourceTree = DEVELOPER_DIR; };
 		6F57279B1ED6DD4D00021988 /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/GameController.framework; sourceTree = DEVELOPER_DIR; };
 		6F57279D1ED6DD5000021988 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/CoreMotion.framework; sourceTree = DEVELOPER_DIR; };
 		6F57279F1ED6DD5900021988 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.2.sdk/System/Library/Frameworks/MediaPlayer.framework; sourceTree = DEVELOPER_DIR; };
 		6F5727A11ED6DE9A00021988 /* GameController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameController.framework; path = System/Library/Frameworks/GameController.framework; sourceTree = SDKROOT; };
-		9163B1DA4BA22639B780D38B /* Pods-common-HelloCpp-mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-common-HelloCpp-mobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-common-HelloCpp-mobile/Pods-common-HelloCpp-mobile.debug.xcconfig"; sourceTree = "<group>"; };
-		B566E02FA57A8C7850D45F96 /* Pods-common-HelloCpp-mobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-common-HelloCpp-mobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-common-HelloCpp-mobile/Pods-common-HelloCpp-mobile.release.xcconfig"; sourceTree = "<group>"; };
 		6F7DB5761EDD0C1100F9530F /* AppMacro.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AppMacro.hpp; sourceTree = "<group>"; };
 		6F7DB5771EDD127100F9530F /* ResourcesConfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResourcesConfig.cpp; sourceTree = "<group>"; };
 		6F7DB5781EDD127100F9530F /* ResourcesConfig.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ResourcesConfig.hpp; sourceTree = "<group>"; };
 		6F7DB57B1EDD18D400F9530F /* resources-ipadhd */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "resources-ipadhd"; sourceTree = "<group>"; };
 		6F7DB57C1EDD18D400F9530F /* resources-iphone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "resources-iphone"; sourceTree = "<group>"; };
 		6F7DB57D1EDD18D400F9530F /* resources-iphonehd */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "resources-iphonehd"; sourceTree = "<group>"; };
+		7CC067F6FF4FBB6FF5C1227D /* Pods-common-HelloCpp-mobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-common-HelloCpp-mobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-common-HelloCpp-mobile/Pods-common-HelloCpp-mobile.release.xcconfig"; sourceTree = "<group>"; };
 		E3BD67F8A08377D661BF9F0C /* libPods-common-HelloCpp-mobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-common-HelloCpp-mobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -111,7 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AC74BA9DA0357B642D5E9A4 /* libPods-common-HelloCpp-mobile.a in Frameworks */,
+				22AFBE1BE0A8D2C21550E38B /* libPods-common-HelloCpp-mobile.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +167,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6F36788B1ED8178D006C89D9 /* libcocos2d-x-release.a */,
 				6F5727A11ED6DE9A00021988 /* GameController.framework */,
 				6F57279F1ED6DD5900021988 /* MediaPlayer.framework */,
 				6F57279D1ED6DD5000021988 /* CoreMotion.framework */,
@@ -258,8 +259,8 @@
 			children = (
 				22BE3FCD0CCA05C2754085F5 /* Pods-common-HelloCpp-desktop.debug.xcconfig */,
 				196A82E00F7DC90195E219CD /* Pods-common-HelloCpp-desktop.release.xcconfig */,
-				9163B1DA4BA22639B780D38B /* Pods-common-HelloCpp-mobile.debug.xcconfig */,
-				B566E02FA57A8C7850D45F96 /* Pods-common-HelloCpp-mobile.release.xcconfig */,
+				14CA6ECADAE3E86DD8B9091D /* Pods-common-HelloCpp-mobile.debug.xcconfig */,
+				7CC067F6FF4FBB6FF5C1227D /* Pods-common-HelloCpp-mobile.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -271,12 +272,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "HelloCpp-mobile" */;
 			buildPhases = (
-				0FB1A651C6C6E4E79916402F /* [CP] Check Pods Manifest.lock */,
+				2784D55FA6E784C437A2960E /* [CP] Check Pods Manifest.lock */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
-				8016F0F013B0FCD208ABB36B /* [CP] Embed Pods Frameworks */,
-				0FB1B3E8276D4FB34B5A7CF4 /* [CP] Copy Pods Resources */,
+				07472F17B655DB086EFBEFE7 /* [CP] Embed Pods Frameworks */,
+				AE2A8110E427EB4056F82E51 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -396,7 +397,22 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		0FB1A651C6C6E4E79916402F /* [CP] Check Pods Manifest.lock */ = {
+		07472F17B655DB086EFBEFE7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-common-HelloCpp-mobile/Pods-common-HelloCpp-mobile-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2784D55FA6E784C437A2960E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -409,21 +425,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		0FB1B3E8276D4FB34B5A7CF4 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-common-HelloCpp-mobile/Pods-common-HelloCpp-mobile-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		651EA1A89E038BC3EA400975 /* [CP] Copy Pods Resources */ = {
@@ -441,21 +442,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-common-HelloCpp-desktop/Pods-common-HelloCpp-desktop-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8016F0F013B0FCD208ABB36B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-common-HelloCpp-mobile/Pods-common-HelloCpp-mobile-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		A62C7ABD2A098F7BCE367381 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -469,6 +455,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-common-HelloCpp-desktop/Pods-common-HelloCpp-desktop-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AE2A8110E427EB4056F82E51 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-common-HelloCpp-mobile/Pods-common-HelloCpp-mobile-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -503,7 +504,7 @@
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9163B1DA4BA22639B780D38B /* Pods-common-HelloCpp-mobile.debug.xcconfig */;
+			baseConfigurationReference = 14CA6ECADAE3E86DD8B9091D /* Pods-common-HelloCpp-mobile.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -524,7 +525,7 @@
 		};
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B566E02FA57A8C7850D45F96 /* Pods-common-HelloCpp-mobile.release.xcconfig */;
+			baseConfigurationReference = 7CC067F6FF4FBB6FF5C1227D /* Pods-common-HelloCpp-mobile.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
