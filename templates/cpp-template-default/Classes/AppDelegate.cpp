@@ -1,5 +1,6 @@
 #include "AppDelegate.hpp"
 #include "HelloWorldScene.hpp"
+#include "ResourcesConfig.hpp"
 
 #include <cocos2d.h>
 
@@ -18,10 +19,9 @@
 #endif
 
 NS_GAME_BEGIN
-static cocos2d::Size designResolutionSize = cocos2d::Size(480, 320);
-static cocos2d::Size smallResolutionSize = cocos2d::Size(480, 320);
-static cocos2d::Size mediumResolutionSize = cocos2d::Size(1024, 768);
-static cocos2d::Size largeResolutionSize = cocos2d::Size(2048, 1536);
+namespace {
+const auto DesignResolution = cocos2d::Size(480, 320);
+} // namespace
 
 AppDelegate::AppDelegate() {
 }
@@ -37,8 +37,12 @@ AppDelegate::~AppDelegate() {
 // if you want a different context, modify the value of glContextAttrs
 // it will affect all platforms
 void AppDelegate::initGLContextAttrs() {
-    // set OpenGL context attributes: red,green,blue,alpha,depth,stencil
+// set OpenGL context attributes: red,green,blue,alpha,depth,stencil
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    GLContextAttrs glContextAttrs = {8, 8, 8, 8, 16, 8};
+#else  // CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
     GLContextAttrs glContextAttrs = {8, 8, 8, 8, 24, 8};
+#endif // CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
     cocos2d::GLView::setGLContextAttrs(glContextAttrs);
 }
 
@@ -59,42 +63,47 @@ bool AppDelegate::applicationDidFinishLaunching() {
     (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) ||                                 \
     (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
         glview = GLViewImpl::createWithRect(
-            "HelloCpp", cocos2d::Rect(0, 0, designResolutionSize.width,
-                                      designResolutionSize.height));
+            "HelloCpp", cocos2d::Rect(0, 0, DesignResolution.width,
+                                      DesignResolution.height));
 #else
         glview = cocos2d::GLViewImpl::create("HelloCpp");
 #endif
         director->setOpenGLView(glview);
     }
 
-    // turn on display FPS
+#ifndef NDEBUG
+    // Turn on display FPS on debug build.
     director->setDisplayStats(true);
+#endif // NDEBUG
 
-    // set FPS. the default value is 1.0/60 if you don't call this
+    // set FPS. the default value is 1.0/60 if you don't call this.
     director->setAnimationInterval(1.0f / 60);
 
-    // Set the design resolution
-    glview->setDesignResolutionSize(designResolutionSize.width,
-                                    designResolutionSize.height,
-                                    ResolutionPolicy::NO_BORDER);
-    auto frameSize = glview->getFrameSize();
-    // if the frame's height is larger than the height of medium size.
-    if (frameSize.height > mediumResolutionSize.height) {
-        director->setContentScaleFactor(
-            MIN(largeResolutionSize.height / designResolutionSize.height,
-                largeResolutionSize.width / designResolutionSize.width));
-    }
-    // if the frame's height is larger than the height of small size.
-    else if (frameSize.height > smallResolutionSize.height) {
-        director->setContentScaleFactor(
-            MIN(mediumResolutionSize.height / designResolutionSize.height,
-                mediumResolutionSize.width / designResolutionSize.width));
-    }
-    // if the frame's height is smaller than the height of medium size.
-    else {
-        director->setContentScaleFactor(
-            MIN(smallResolutionSize.height / designResolutionSize.height,
-                smallResolutionSize.width / designResolutionSize.width));
+    // Set the design resolution.
+    // Use FIXED_WIDTH for portrait mode.
+    // Use FIXED_HEIGHT for landscape mode.
+    auto resolutionPolicy = (DesignResolution.height > DesignResolution.width
+                                 ? ResolutionPolicy::FIXED_WIDTH
+                                 : ResolutionPolicy::FIXED_HEIGHT);
+    glview->setDesignResolutionSize(DesignResolution.width,
+                                    DesignResolution.height, resolutionPolicy);
+
+    auto&& frameSize = glview->getFrameSize();
+    cocos2d::log("frameSize = %f %f", frameSize.width, frameSize.height);
+
+    auto resourcesPackage =
+        getResourcesPackage(DesignResolution.width, DesignResolution.height);
+
+    auto fileUtils = cocos2d::FileUtils::getInstance();
+    if (resourcesPackage == ResourcesPackage::Small) {
+        director->setContentScaleFactor(1.0f);
+        fileUtils->addSearchPath("resources-iphone");
+    } else if (resourcesPackage == ResourcesPackage::Medium) {
+        director->setContentScaleFactor(2.0f);
+        fileUtils->addSearchPath("resources-iphonehd");
+    } else {
+        director->setContentScaleFactor(4.0f);
+        fileUtils->addSearchPath("resources-ipadhd");
     }
 
     register_all_packages();
