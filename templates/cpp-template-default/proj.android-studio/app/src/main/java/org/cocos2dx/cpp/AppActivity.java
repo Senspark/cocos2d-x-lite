@@ -23,6 +23,18 @@
  ****************************************************************************/
 package org.cocos2dx.cpp;
 
+import android.os.Bundle;
+import android.util.Log;
+
 import org.cocos2dx.lib.Cocos2dxActivity;
 
-public class AppActivity extends Cocos2dxActivity {}
+public class AppActivity extends Cocos2dxActivity {
+    private static final String Tag = AppActivity.class.getName();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        Log.d(Tag, "onCreate: begin");
+        super.onCreate(savedInstanceState);
+        Log.d(Tag, "onCreate: end");
+    }
+}

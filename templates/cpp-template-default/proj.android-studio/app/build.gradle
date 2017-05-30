@@ -1,5 +1,8 @@
 apply plugin: 'com.android.application'
 
+/// Modify this variable to build the desired architectures.
+String[] architectures = ['armeabi', 'armeabi-v7a', 'x86']
+
 android {
     compileSdkVersion 25
     buildToolsVersion '25.0.3'
@@ -25,6 +28,10 @@ android {
                 arguments 'APP_PLATFORM=android-9'
                 arguments 'APP_LDFLAGS=-latomic'
 
+                // Fix issue: https://stackoverflow.com/questions/43495127/gradle-android-single-ndk-build-for-multiple-flavors
+                arguments "NDK_OUT=$projectDir/src/main/obj"
+                arguments "NDK_LIBS_OUT=$projectDir/src/main/libs"
+
                 // http://stackoverflow.com/questions/42579759/how-to-change-android-gradle-ndk-j-jobs-flag-value-for-clean-task
                 arguments '-j' + Runtime.runtime.availableProcessors()
 
@@ -34,7 +41,7 @@ android {
         }
 
         ndk {
-            abiFilters 'armeabi', 'armeabi-v7a' //, 'x86'
+            abiFilters architectures
         }
     }
 
@@ -44,7 +51,20 @@ android {
         }
     }
 
-    sourceSets.main {
+    splits {
+        abi {
+            enable true
+            reset()
+            include architectures
+            universalApk false
+        }
+    }
+
+    sourceSets {
+        main {
+            assets.srcDir '../../Resources'
+            jniLibs.srcDir 'src/main/libs'
+        }
     }
 
     signingConfigs {
@@ -63,7 +83,7 @@ android {
             externalNativeBuild {
                 ndkBuild {
                     arguments 'NDK_DEBUG=0'
-                    cppFlags += '-DCOCOS2D_DEBUG=1'
+                    cppFlags += '-DNDEBUG'
                 }
             }
         }
@@ -71,7 +91,7 @@ android {
             externalNativeBuild {
                 ndkBuild {
                     arguments 'NDK_DEBUG=1'
-                    cppFlags += '-DNDEBUG'
+                    cppFlags += '-DCOCOS2D_DEBUG=1'
                 }
             }
         }
@@ -86,6 +106,9 @@ android {
                     normalScreens: "false",
                     smallScreens : "true",
             ]
+            aaptOptions {
+                ignoreAssetsPattern '!*iphonehd:!*ipadhd'
+            }
         }
         iphonehd {
             dimension 'screenSize'
@@ -95,6 +118,9 @@ android {
                     normalScreens: "true",
                     smallScreens : "false",
             ]
+            aaptOptions {
+                ignoreAssetsPattern '!*iphone:!*ipadhd'
+            }
         }
         ipadhd {
             dimension 'screenSize'
@@ -104,6 +130,9 @@ android {
                     normalScreens: "false",
                     smallScreens : "false",
             ]
+            aaptOptions {
+                ignoreAssetsPattern '!*iphone:!*iphonehd'
+            }
         }
     }
 
@@ -114,6 +143,37 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
+    }
+}
+
+/// Fix issue where .so files are not copied to src/main/libs.
+tasks.whenTaskAdded { task ->
+    if (task.name.contains("externalNativeBuild")) {
+        task.doLast {
+            architectures.each { arch ->
+                println "[$arch] Install : libcocos2dcpp.so => $projectDir/src/main/libs/$arch/libcocos2dcpp.so"
+                exec {
+                    // Create directories.
+                    commandLine 'mkdir', '-p',
+                            "$projectDir/src/main/libs/$arch"
+                }
+                exec {
+                    // Copy while preserving timestamp.
+                    commandLine 'install', '-p',
+                            "$projectDir/src/main/obj/local/$arch/libcocos2dcpp.so",
+                            "$projectDir/src/main/libs/$arch/libcocos2dcpp.so"
+                }
+                exec {
+                    // Strip.
+                    def stripToolchain = (arch == 'x86'
+                            ? 'x86-4.9/prebuilt/darwin-x86_64/bin/i686-linux-android-strip'
+                            : 'arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-strip')
+                    commandLine "${project.android.ndkDirectory}/toolchains/$stripToolchain",
+                            '--strip-unneeded',
+                            "$projectDir/src/main/libs/$arch/libcocos2dcpp.so"
+                }
+            }
+        }
     }
 }
 
