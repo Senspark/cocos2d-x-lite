@@ -1,3 +1,5 @@
+import org.apache.commons.io.FilenameUtils
+
 apply plugin: 'com.android.application'
 
 /// Modify this variable to build the desired architectures.
@@ -143,6 +145,59 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/LICENSE.txt'
         exclude 'META-INF/NOTICE.txt'
+    }
+}
+
+android.applicationVariants.all { variant ->
+    // Remove unaligned apks.
+    variant.assemble.doLast {
+        variant.outputs.each { output ->
+            def file = output.packageApplication.outputFile;
+            if (variant.buildType.zipAlignEnabled && file.getName().contains('unaligned')) {
+                file.delete()
+            }
+        }
+    }
+    // Change version codes.
+    variant.outputs.each { output ->
+        def architecture = output.getFilter(com.android.build.OutputFile.ABI)
+        String screenSize = null
+        for (size in ['iphone', 'iphonehd', 'ipadhd'])
+            if (output.baseName.contains(size)) {
+                screenSize = size
+            }
+        def architectureVersionCodes = [
+                'armeabi'    : 1,
+                'armeabi-v7a': 2,
+                'x86'        : 6
+        ]
+        def screenSizeVersionCodes = [
+                'universal': '00',
+                'iphone'   : '11',
+                'iphonehd' : '23',
+                'ipadhd'   : '44'
+        ]
+
+        // def flavor = variant.productFlavors.get(0)
+        def versionCode = String.format('%d%s%s',
+                android.defaultConfig.versionCode,
+                architectureVersionCodes.get(architecture),
+                screenSizeVersionCodes.get(screenSize)).toInteger();
+
+        output.versionCodeOverride = versionCode;
+
+        // Change output filename for aligned apks.
+        if (variant.buildType.zipAlignEnabled) {
+            def packageName = android.defaultConfig.applicationId
+            def versionName = android.defaultConfig.versionName
+            def file = output.outputFile
+            def name = file.getName()
+            def baseName = FilenameUtils.getBaseName(name)
+            def directory = file.getParent()
+            def newName = String.format('%s-%s-%s-%d.apk', baseName, packageName, versionName, versionCode)
+            def newPath = String.format('%s/%s', directory, newName)
+            output.outputFile = new File(newPath)
+        }
     }
 }
 
