@@ -109,7 +109,7 @@ android {
                     smallScreens : "true",
             ]
             aaptOptions {
-                ignoreAssetsPattern '!*iphonehd:!*ipadhd'
+                ignoreAssetsPattern '!.*:!*iphonehd:!*ipadhd'
             }
         }
         iphonehd {
@@ -121,7 +121,7 @@ android {
                     smallScreens : "false",
             ]
             aaptOptions {
-                ignoreAssetsPattern '!*iphone:!*ipadhd'
+                ignoreAssetsPattern '!.*:!*iphone:!*ipadhd'
             }
         }
         ipadhd {
@@ -133,7 +133,7 @@ android {
                     smallScreens : "false",
             ]
             aaptOptions {
-                ignoreAssetsPattern '!*iphone:!*iphonehd'
+                ignoreAssetsPattern '!.*:!*iphone:!*iphonehd'
             }
         }
     }
