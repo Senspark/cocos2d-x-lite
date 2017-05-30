@@ -14,6 +14,13 @@ NS_GAME_BEGIN
 ResourcesPackage getResourcesPackage(float designedWidth,
                                      float designedHeight) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    auto fileUtils = cocos2d::FileUtils::getInstance();
+    if (fileUtils->isDirectoryExist("resources-ipadhd")) {
+        return ResourcesPackage::Large;
+    }
+    if (fileUtils->isDirectoryExist("resources-iphonehd")) {
+        return ResourcesPackage::Medium;
+    }
     return ResourcesPackage::Small;
 #else  // CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
     // All resources are packed together.
