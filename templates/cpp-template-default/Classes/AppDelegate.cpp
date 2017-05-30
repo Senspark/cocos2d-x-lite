@@ -120,6 +120,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 // This function will be called when the app is inactive. Note, when receiving a
 // phone call it is invoked.
 void AppDelegate::applicationDidEnterBackground() {
+    cocos2d::log(__PRETTY_FUNCTION__);
     cocos2d::Director::getInstance()->stopAnimation();
 
 #if USE_AUDIO_ENGINE
@@ -132,6 +133,7 @@ void AppDelegate::applicationDidEnterBackground() {
 
 // this function will be called when the app is active again
 void AppDelegate::applicationWillEnterForeground() {
+    cocos2d::log(__PRETTY_FUNCTION__);
     cocos2d::Director::getInstance()->startAnimation();
 
 #if USE_AUDIO_ENGINE
