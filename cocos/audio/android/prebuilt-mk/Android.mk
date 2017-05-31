@@ -40,5 +40,5 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/../../include
 
 include $(PREBUILT_STATIC_LIBRARY)
 
-$(call import-module, android-specific/tremolo/prebuilt-mk)
-$(call import-module, android-specific/pvmp3dec/prebuilt-mk)
+$(call import-module, external/android-specific/tremolo/prebuilt-mk)
+$(call import-module, external/android-specific/pvmp3dec/prebuilt-mk)
