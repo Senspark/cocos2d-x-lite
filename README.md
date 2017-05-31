@@ -62,20 +62,20 @@ project-dir
 └─── Resources
 ```
 
-- Modify 'settings.gradle':
+- Modify `settings.gradle`:
 
 ```
 include ':libcocos2dx'
 project(':libcocos2dx').projectDir = new File(settingsDir, '../cocos2d/cocos/platform/android/libcocos2dx')
 ```
 
-- Modify 'build.gradle':
+- Modify `build.gradle`:
 
 ```
 compile project(':libcocos2dx')
 ```
 
-- Modify 'Android.mk':
+- Modify `Android.mk`:
 
 ```
 $(call import-add-path, $(LOCAL_PATH)/../../../../../cocos2d
