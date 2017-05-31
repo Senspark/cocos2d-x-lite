@@ -198,7 +198,7 @@ tasks.whenTaskAdded { task ->
                                     'APP_PLATFORM=android-9',
                                     'APP_LDFLAGS=-latomic',
                                     "APP_ABI=${architectures.join(' ')}",
-                                    "APP_CPPFLAGS=$cppFlags",
+                                    "APP_CPPFLAGS=${cppFlags.join(' ')}",
                                     "NDK_OUT=$projectDir/src/main/obj/$mode",
                                     "NDK_DEBUG=${(mode == 'debug') ? 1 : 0}"
                         }
