@@ -27,7 +27,7 @@ src/pvmp3_poly_phase_synthesis.cpp \
 src/pvmp3_equalizer.cpp \
 src/pvmp3_seek_synch.cpp \
 src/pvmp3_stereo_proc.cpp \
-src/pvmp3_reorder.cpp \
+src/pvmp3_reorder.cpp
 
 ifeq ($(TARGET_ARCH),arm)
   LOCAL_SRC_FILES += \
