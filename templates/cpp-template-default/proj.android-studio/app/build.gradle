@@ -75,9 +75,6 @@ android {
                     normalScreens: "false",
                     smallScreens : "true",
             ]
-            aaptOptions {
-                ignoreAssetsPattern '!.*:!*iphonehd:!*ipadhd'
-            }
         }
         iphonehd {
             dimension 'screenSize'
@@ -87,9 +84,6 @@ android {
                     normalScreens: "true",
                     smallScreens : "false",
             ]
-            aaptOptions {
-                ignoreAssetsPattern '!.*:!*iphone:!*ipadhd'
-            }
         }
         ipadhd {
             dimension 'screenSize'
@@ -99,9 +93,6 @@ android {
                     normalScreens: "false",
                     smallScreens : "false",
             ]
-            aaptOptions {
-                ignoreAssetsPattern '!.*:!*iphone:!*iphonehd'
-            }
         }
     }
 
@@ -124,6 +115,18 @@ android.applicationVariants.all { variant ->
                 file.delete()
             }
         }
+    }
+
+    // Remove unused resources.
+    // https://stackoverflow.com/questions/28897450/exclude-assets-for-release-build-type
+    variant.mergeAssets.doLast {
+        def patterns = [
+                'iphone'  : ['**/*iphonehd/**', '**/*ipadhd/**'],
+                'iphonehd': ['**/*iphone/**', '**/*ipadhd/**'],
+                'ipadhd'  : ['**/*iphone/**', '**/*iphonehd/**'],
+        ]
+        def flavorName = variant.productFlavors.get(0).name
+        delete(fileTree(dir: variant.mergeAssets.outputDir, includes: patterns.get(flavorName)))
     }
 
     // Change version codes.
