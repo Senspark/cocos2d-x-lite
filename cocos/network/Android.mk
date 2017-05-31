@@ -1,4 +1,5 @@
 LOCAL_PATH := $(call my-dir)
+
 include $(CLEAR_VARS)
 
 LOCAL_MODULE := cocos_network_static
@@ -7,7 +8,8 @@ LOCAL_MODULE_FILENAME := libnetwork
 
 LOCAL_ARM_MODE := arm
 
-LOCAL_SRC_FILES := HttpClient-android.cpp \
+LOCAL_SRC_FILES := \
+HttpClient-android.cpp \
 SocketIO.cpp \
 WebSocket.cpp \
 CCDownloader.cpp \

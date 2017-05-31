@@ -23,13 +23,15 @@ jni/TouchesJni.cpp
 
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)
 
-LOCAL_C_INCLUDES := $(LOCAL_PATH) \
-                    $(LOCAL_PATH)/.. \
-                    $(LOCAL_PATH)/../.. \
+LOCAL_C_INCLUDES := \
+$(LOCAL_PATH) \
+$(LOCAL_PATH)/.. \
+$(LOCAL_PATH)/../.. \
 
-LOCAL_EXPORT_LDLIBS := -lGLESv2 \
-                       -lEGL \
-                       -llog \
-                       -landroid
+LOCAL_EXPORT_LDLIBS := \
+-lGLESv2 \
+-lEGL \
+-llog \
+-landroid
 
 include $(BUILD_STATIC_LIBRARY)

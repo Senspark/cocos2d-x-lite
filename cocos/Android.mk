@@ -9,9 +9,9 @@ LOCAL_MODULE_FILENAME := libcocos2dxinternal
 LOCAL_ARM_MODE := arm
 
 ifeq ($(TARGET_ARCH_ABI),armeabi-v7a)
-MATHNEONFILE := math/MathUtil.cpp.neon
+  MATHNEONFILE := math/MathUtil.cpp.neon
 else
-MATHNEONFILE := math/MathUtil.cpp
+  MATHNEONFILE := math/MathUtil.cpp
 endif
 
 LOCAL_SRC_FILES := \
@@ -232,38 +232,40 @@ navmesh/CCNavMeshUtils.cpp \
 ../external/poly2tri/sweep/sweep.cc \
 ../external/clipper/clipper.cpp
 
+LOCAL_EXPORT_C_INCLUDES := \
+$(LOCAL_PATH) \
+$(LOCAL_PATH)/. \
+$(LOCAL_PATH)/.. \
+$(LOCAL_PATH)/../external \
+$(LOCAL_PATH)/../external/tinyxml2 \
+$(LOCAL_PATH)/../external/unzip \
+$(LOCAL_PATH)/../external/chipmunk/include/chipmunk \
+$(LOCAL_PATH)/../external/xxhash \
+$(LOCAL_PATH)/../external/nslog \
+$(LOCAL_PATH)/../external/poly2tri \
+$(LOCAL_PATH)/../external/poly2tri/common \
+$(LOCAL_PATH)/../external/poly2tri/sweep \
+$(LOCAL_PATH)/../external/clipper
 
-LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH) \
-                    $(LOCAL_PATH)/. \
-                    $(LOCAL_PATH)/.. \
-                    $(LOCAL_PATH)/../external \
-                    $(LOCAL_PATH)/../external/tinyxml2 \
-                    $(LOCAL_PATH)/../external/unzip \
-                    $(LOCAL_PATH)/../external/chipmunk/include/chipmunk \
-                    $(LOCAL_PATH)/../external/xxhash \
-                    $(LOCAL_PATH)/../external/nslog \
-                    $(LOCAL_PATH)/../external/poly2tri \
-                    $(LOCAL_PATH)/../external/poly2tri/common \
-                    $(LOCAL_PATH)/../external/poly2tri/sweep \
-                    $(LOCAL_PATH)/../external/clipper
+LOCAL_C_INCLUDES := \
+$(LOCAL_PATH) \
+$(LOCAL_PATH)/../external \
+$(LOCAL_PATH)/../external/tinyxml2 \
+$(LOCAL_PATH)/../external/unzip \
+$(LOCAL_PATH)/../external/chipmunk/include/chipmunk \
+$(LOCAL_PATH)/../external/edtaa3func \
+$(LOCAL_PATH)/../external/xxhash \
+$(LOCAL_PATH)/../external/ConvertUTF \
+$(LOCAL_PATH)/../external/nslog \
+$(LOCAL_PATH)/../external/poly2tri \
+$(LOCAL_PATH)/../external/poly2tri/common \
+$(LOCAL_PATH)/../external/poly2tri/sweep \
+$(LOCAL_PATH)/../external/clipper
 
-LOCAL_C_INCLUDES := $(LOCAL_PATH) \
-                    $(LOCAL_PATH)/../external \
-                    $(LOCAL_PATH)/../external/tinyxml2 \
-                    $(LOCAL_PATH)/../external/unzip \
-                    $(LOCAL_PATH)/../external/chipmunk/include/chipmunk \
-                    $(LOCAL_PATH)/../external/edtaa3func \
-                    $(LOCAL_PATH)/../external/xxhash \
-                    $(LOCAL_PATH)/../external/ConvertUTF \
-                    $(LOCAL_PATH)/../external/nslog \
-                    $(LOCAL_PATH)/../external/poly2tri \
-                    $(LOCAL_PATH)/../external/poly2tri/common \
-                    $(LOCAL_PATH)/../external/poly2tri/sweep \
-                    $(LOCAL_PATH)/../external/clipper
-
-LOCAL_EXPORT_LDLIBS := -lGLESv2 \
-                       -llog \
-                       -landroid
+LOCAL_EXPORT_LDLIBS := \
+-lGLESv2 \
+-llog \
+-landroid
 
 LOCAL_STATIC_LIBRARIES := cocos_freetype2_static
 LOCAL_STATIC_LIBRARIES += cocos_png_static
@@ -275,13 +277,12 @@ LOCAL_STATIC_LIBRARIES += cocos_zlib_static
 LOCAL_STATIC_LIBRARIES += cocos_ssl_static
 LOCAL_STATIC_LIBRARIES += recast_static
 LOCAL_STATIC_LIBRARIES += bullet_static
-
-LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dxandroid_static
-LOCAL_WHOLE_STATIC_LIBRARIES += cpufeatures
+LOCAL_STATIC_LIBRARIES += cocos2dxandroid_static
+LOCAL_STATIC_LIBRARIES += cpufeatures
 
 # define the macro to compile through support/zip_support/ioapi.c
-LOCAL_CFLAGS   :=  -DUSE_FILE32API
-LOCAL_CFLAGS   +=  -fexceptions
+LOCAL_CFLAGS := -DUSE_FILE32API
+LOCAL_CFLAGS += -fexceptions
 
 # Issues #9968
 #ifeq ($(TARGET_ARCH_ABI),armeabi-v7a)
@@ -289,7 +290,7 @@ LOCAL_CFLAGS   +=  -fexceptions
 #endif
 
 LOCAL_CPPFLAGS := -Wno-deprecated-declarations
-LOCAL_EXPORT_CFLAGS   := -DUSE_FILE32API
+LOCAL_EXPORT_CFLAGS := -DUSE_FILE32API
 LOCAL_EXPORT_CPPFLAGS := -Wno-deprecated-declarations
 
 include $(BUILD_STATIC_LIBRARY)
@@ -326,7 +327,7 @@ $(call import-module, external/Box2D)
 $(call import-module, external/bullet)
 $(call import-module, external/chipmunk/prebuilt/android)
 # $(call import-module, external/curl/prebuilt/android)
-$(call import-module, external/flatbuffers)
+# $(call import-module, external/flatbuffers)
 $(call import-module, external/freetype2/prebuilt/android)
 $(call import-module, external/jpeg/prebuilt/android)
 $(call import-module, external/openssl/prebuilt/android)

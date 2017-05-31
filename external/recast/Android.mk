@@ -30,5 +30,5 @@ fastlz/fastlz.c
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/..
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/..
-                                 
+
 include $(BUILD_STATIC_LIBRARY)
