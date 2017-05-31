@@ -15,9 +15,6 @@ LOCAL_C_INCLUDES := ${shell find $(PROJECT_DIR)/Classes -type d -print}
 
 LOCAL_STATIC_LIBRARIES := cocos2dx_static
 
-# Fix linking errors when use prebuilt libs.
-LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_internal_static
-
 include $(BUILD_SHARED_LIBRARY)
 
 # $(call import-module, cocos)

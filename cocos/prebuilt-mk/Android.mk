@@ -51,8 +51,9 @@ LOCAL_STATIC_LIBRARIES += cocos_zlib_static
 LOCAL_STATIC_LIBRARIES += cocos_ssl_static
 LOCAL_STATIC_LIBRARIES += recast_static
 LOCAL_STATIC_LIBRARIES += bullet_static
-LOCAL_STATIC_LIBRARIES += cocos2dxandroid_static
-LOCAL_STATIC_LIBRARIES += cpufeatures
+
+LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dxandroid_static
+LOCAL_WHOLE_STATIC_LIBRARIES += cpufeatures
 
 # define the macro to compile through support/zip_support/ioapi.c
 LOCAL_CFLAGS := -DUSE_FILE32API
@@ -90,6 +91,9 @@ LOCAL_STATIC_LIBRARIES += cocos_network_static
 LOCAL_STATIC_LIBRARIES += audioengine_static
 LOCAL_STATIC_LIBRARIES += cocosdenshion_static
 LOCAL_STATIC_LIBRARIES += cocos_ui_static
+
+# Fix linking errors when use prebuilt libs.
+LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_internal_static
 
 include $(PREBUILT_STATIC_LIBRARY)
 #==============================================================
