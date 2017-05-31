@@ -179,11 +179,15 @@ tasks.whenTaskAdded { task ->
                 if (name == "prepare${size.capitalize()}${mode.capitalize()}Dependencies") {
                     task.doFirst {
                         def ndkDir = android.ndkDirectory
-                        def cppFlags = '-frtti -fexceptions -fsigned-char'
+                        def cppFlags = [
+                                '-frtti',
+                                '-fexceptions',
+                                '-fsigned-char'
+                        ]
                         if (mode == 'debug') {
-                            cppFlags += ' -DCOCOS2D_DEBUG=1'
+                            cppFlags.add('-DCOCOS2D_DEBUG=1')
                         } else {
-                            cppFlags += ' -DNDEBUG'
+                            cppFlags.add('-DNDEBUG')
                         }
                         exec {
                             commandLine "$ndkDir/ndk-build",
