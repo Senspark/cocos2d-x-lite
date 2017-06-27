@@ -1,0 +1,8 @@
+prebuilt/proj.ios_mac/Pods
+prebuilt/proj.ios_mac/build/cocos2d_prebuilt.build
+prebuilt/proj.ios_mac/cocos2d_prebuilt.xcodeproj/project.xcworkspace
+prebuilt/proj.ios_mac/cocos2d_prebuilt.xcodeproj/xcuserdata
+prebuilt/proj.ios_mac/cocos2d_prebuilt.xcworkspace
+templates/cpp-template-default/proj.android-studio/app/src/main/obj
+templates/cpp-template-default/proj.android-studio/.idea
+prebuilt/proj.ios_mac/Products
