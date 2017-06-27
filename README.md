@@ -7,7 +7,9 @@
 
 ## Prerequisite
 
-- Dependencies: install 7z via brew `brew install p7zip`
+- Dependencies:
+  - 7z: `brew install p7zip`
+  - Git LFS: `brew install git-lfs`
 - Android NDK r10e (for Android installation): [Download](https://dl.google.com/android/repository/android-ndk-r10e-darwin-x86_64.zip)
 
 ## Drawbacks
