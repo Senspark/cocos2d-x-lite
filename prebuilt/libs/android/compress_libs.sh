@@ -26,6 +26,7 @@ LIBS=(
     librecast
     libspine
     libcocosbuilder
+    libui
     libvorbisidec
 )
 
