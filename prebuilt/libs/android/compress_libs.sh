@@ -37,8 +37,8 @@ function strip() {
     echo $1 $2 $3
     for LIB in "${LIBS[@]}"
     do
-        echo $1 --strip-unneeded $2/$LIB.a -o $3/$LIB.a
-        $1 --strip-unneeded $2/$LIB.a -o $3/$LIB.a
+        echo $1 -S $2/$LIB.a -o $3/$LIB.a
+        $1 -S $2/$LIB.a -o $3/$LIB.a
     done
 }
 
