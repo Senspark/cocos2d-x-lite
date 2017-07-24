@@ -45,6 +45,13 @@ function strip() {
 OBJ_DIR=$PROJECT_DIR/app/src/main/obj
 LIBS_DIR=$DIR
 
+mkdir -p $LIBS_DIR/armeabi/debug
+mkdir -p $LIBS_DIR/armeabi/release
+mkdir -p $LIBS_DIR/armeabi-v7a/debug
+mkdir -p $LIBS_DIR/armeabi-v7a/release
+mkdir -p $LIBS_DIR/x86/debug
+mkdir -p $LIBS_DIR/x86/release
+
 # Strip debug symbols.
 strip $ARM_32_STRIP_PATH "$OBJ_DIR/debug/local/armeabi"       $LIBS_DIR/armeabi/debug
 strip $ARM_32_STRIP_PATH "$OBJ_DIR/release/local/armeabi"     $LIBS_DIR/armeabi/release
