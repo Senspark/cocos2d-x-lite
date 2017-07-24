@@ -1,12 +1,12 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Build all static libraries.
-xcodebuild -workspace cocos2d_prebuilt.xcworkspace -scheme Pods-common-libcocos2d_prebuilt_desktop -configuration Debug   -sdk macosx          ONLY_ACTIVE_ARCH=NO -arch x86_64 BUILD_DIR=$DIR/Products
-xcodebuild -workspace cocos2d_prebuilt.xcworkspace -scheme Pods-common-libcocos2d_prebuilt_desktop -configuration Release -sdk macosx          ONLY_ACTIVE_ARCH=NO -arch x86_64 BUILD_DIR=$DIR/Products
-xcodebuild -workspace cocos2d_prebuilt.xcworkspace -scheme Pods-common-libcocos2d_prebuilt_mobile  -configuration Debug   -sdk iphoneos        ONLY_ACTIVE_ARCH=NO -arch armv7  BUILD_DIR=$DIR/Products
-xcodebuild -workspace cocos2d_prebuilt.xcworkspace -scheme Pods-common-libcocos2d_prebuilt_mobile  -configuration Release -sdk iphoneos        ONLY_ACTIVE_ARCH=NO -arch armv7  BUILD_DIR=$DIR/Products
-xcodebuild -workspace cocos2d_prebuilt.xcworkspace -scheme Pods-common-libcocos2d_prebuilt_mobile  -configuration Debug   -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -arch x86_64 BUILD_DIR=$DIR/Products
-xcodebuild -workspace cocos2d_prebuilt.xcworkspace -scheme Pods-common-libcocos2d_prebuilt_mobile  -configuration Release -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -arch x86_64 BUILD_DIR=$DIR/Products
+xcodebuild -workspace cocos2d_prebuilt.xcworkspace -scheme Pods-common-libcocos2d_prebuilt_desktop -configuration Debug   -sdk macosx          ONLY_ACTIVE_ARCH=NO -arch x86_64                         BUILD_DIR=$DIR/Products
+xcodebuild -workspace cocos2d_prebuilt.xcworkspace -scheme Pods-common-libcocos2d_prebuilt_desktop -configuration Release -sdk macosx          ONLY_ACTIVE_ARCH=NO -arch x86_64                         BUILD_DIR=$DIR/Products
+xcodebuild -workspace cocos2d_prebuilt.xcworkspace -scheme Pods-common-libcocos2d_prebuilt_mobile  -configuration Debug   -sdk iphoneos        ONLY_ACTIVE_ARCH=NO -arch armv7                          BUILD_DIR=$DIR/Products
+xcodebuild -workspace cocos2d_prebuilt.xcworkspace -scheme Pods-common-libcocos2d_prebuilt_mobile  -configuration Release -sdk iphoneos        ONLY_ACTIVE_ARCH=NO -arch armv7 -arch armv7s -arch arm64 BUILD_DIR=$DIR/Products
+xcodebuild -workspace cocos2d_prebuilt.xcworkspace -scheme Pods-common-libcocos2d_prebuilt_mobile  -configuration Debug   -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -arch x86_64                         BUILD_DIR=$DIR/Products
+xcodebuild -workspace cocos2d_prebuilt.xcworkspace -scheme Pods-common-libcocos2d_prebuilt_mobile  -configuration Release -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO -arch x86_64                         BUILD_DIR=$DIR/Products
 
 # $1 = source file
 # $2 = destination file
