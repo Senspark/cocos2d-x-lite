@@ -202,6 +202,7 @@ tasks.whenTaskAdded { task ->
                                     'APP_LDFLAGS=-latomic',
                                     "APP_ABI=${architectures.join(' ')}",
                                     "APP_CPPFLAGS=${cppFlags.join(' ')}",
+                                    'APP_CPPFLAGS+=-U__SSE__',
                                     "NDK_OUT=$projectDir/src/main/obj/$mode",
                                     "NDK_DEBUG=${(mode == 'debug') ? 1 : 0}"
                         }
