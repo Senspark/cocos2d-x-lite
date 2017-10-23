@@ -72,10 +72,10 @@ FontAtlas::FontAtlas(Font &theFont)
         }
         
         reinit();
-        
+
 #if CC_ENABLE_CACHE_TEXTURE_DATA
         auto eventDispatcher = Director::getInstance()->getEventDispatcher();
-        
+
         _rendererRecreatedListener = EventListenerCustom::create(EVENT_RENDERER_RECREATED, CC_CALLBACK_1(FontAtlas::listenRendererRecreated, this));
         eventDispatcher->addEventListenerWithFixedPriority(_rendererRecreatedListener, 1);
 #endif
@@ -84,29 +84,30 @@ FontAtlas::FontAtlas(Font &theFont)
 
 void FontAtlas::reinit()
 {
-    if (_currentPageData != nullptr)
+    if (_currentPageData)
     {
-        delete[] _currentPageData;
+        delete []_currentPageData;
         _currentPageData = nullptr;
     }
     
-    auto texture = new (std::nothrow) Texture2D();
+    auto texture = new (std::nothrow) Texture2D;
     
     _currentPageDataSize = CacheTextureWidth * CacheTextureHeight;
+    
     auto outlineSize = _fontFreeType->getOutlineSize();
     if(outlineSize > 0)
     {
         _lineHeight += 2 * outlineSize;
         _currentPageDataSize *= 2;
     }
-
+    
     _currentPageData = new (std::nothrow) unsigned char[_currentPageDataSize];
     memset(_currentPageData, 0, _currentPageDataSize);
-
-    auto  pixelFormat = outlineSize > 0 ? Texture2D::PixelFormat::AI88 : Texture2D::PixelFormat::A8; 
-    texture->initWithData(_currentPageData, _currentPageDataSize, 
-        pixelFormat, CacheTextureWidth, CacheTextureHeight, Size(CacheTextureWidth,CacheTextureHeight) );
-
+    
+    auto  pixelFormat = outlineSize > 0 ? Texture2D::PixelFormat::AI88 : Texture2D::PixelFormat::A8;
+    texture->initWithData(_currentPageData, _currentPageDataSize,
+                          pixelFormat, CacheTextureWidth, CacheTextureHeight, Size(CacheTextureWidth,CacheTextureHeight) );
+    
     addTexture(texture,0);
     texture->release();
 }
@@ -430,6 +431,8 @@ bool FontAtlas::prepareLetterDefinitions(const std::u32string& utf32Text)
             tempDef.V = tempDef.V / scaleFactor;
         }
         else{
+            if(bitmap)
+                delete[] bitmap;
             if (tempDef.xAdvance)
                 tempDef.validDefinition = true;
             else
@@ -457,16 +460,7 @@ bool FontAtlas::prepareLetterDefinitions(const std::u32string& utf32Text)
     {
         data = _currentPageData + CacheTextureWidth * (int)startY;
     }
-    
-    auto iter = _atlasTextures.find(_currentPage);
-    if (iter != _atlasTextures.cend())
-    {
-        iter->second->updateWithData(data, 0, startY, CacheTextureWidth, _currentPageOrigY - startY + _currLineHeight);
-    }
-    else
-    {
-        log("Abnormal situation: _atlasTextures is empty");
-    }
+    _atlasTextures[_currentPage]->updateWithData(data, 0, startY, CacheTextureWidth, _currentPageOrigY - startY + _currLineHeight);
 
     return true;
 }
