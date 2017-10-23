@@ -3,7 +3,13 @@
 ## Changes
 
 - Update tinyxml2 to 4.0.1
-- Remove 3D particles and cocostudio.
+- Removed:
+  - 3D nodes + particles
+  - Navmesh
+  - 2D + 3D Physics
+  - Cocos Studio parser
+  - VR
+  - Lua + JS
 
 ## Prerequisite
 
@@ -15,6 +21,7 @@
 ## Drawbacks
 
 - Cannot use `⌘ + ⇧ + O` to search for source files in Xcode.
+- Breakpoints in Xcode.
 
 ## Integration
 
