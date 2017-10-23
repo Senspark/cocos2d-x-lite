@@ -28,7 +28,6 @@
 #include "platform/CCGLView.h"
 #include "base/CCDirector.h"
 #include "platform/CCFileUtils.h"
-#include "ui/UIWebViewImpl-tizen.h"
 
 NS_CC_BEGIN
 namespace experimental{
@@ -147,6 +146,19 @@ namespace experimental{
                 _impl->setVisible(visible);
             }
         }
+        
+        void WebView::setOpacityWebView(float opacity){
+            _impl->setOpacityWebView(opacity);
+        }
+        
+        float WebView::getOpacityWebView() const{
+            return _impl->getOpacityWebView();
+        }
+        
+        void WebView::setBackgroundTransparent()
+        {
+            _impl->setBackgroundTransparent();
+        };
 
         void WebView::onEnter()
         {

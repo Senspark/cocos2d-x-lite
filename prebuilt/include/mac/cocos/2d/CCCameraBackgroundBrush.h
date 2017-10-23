@@ -27,7 +27,6 @@
 
 #include "base/ccTypes.h"
 #include "base/CCRef.h"
-#include "3d/CCFrustum.h"
 #include "renderer/CCQuadCommand.h"
 #include "renderer/CCCustomCommand.h"
 #include "renderer/CCFrameBuffer.h"
@@ -158,6 +157,9 @@ protected:
     GLboolean _clearColor;
     
     V3F_C4B_T2F_Quad _quad;
+    GLuint      _vao;
+    GLuint      _vertexBuffer;
+    GLuint      _indexBuffer;
 };
 
 /**
@@ -179,6 +181,11 @@ public:
      * @return Created brush
      */
     static CameraBackgroundColorBrush* create(const Color4F& color, float depth);
+    
+    /**
+     * Draw background
+     */
+    virtual void drawBackground(Camera* camera) override;
     
     /**
      * Set clear color
