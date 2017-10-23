@@ -24,8 +24,8 @@
  ****************************************************************************/
 
 #import "AppController.h"
-#import "RootViewController.h"
 #import "AppDelegate.hpp"
+#import "RootViewController.h"
 
 #import <cocos2d.h>
 
@@ -41,7 +41,6 @@ static NS_GAME::AppDelegate s_sharedApplication;
 
 - (BOOL)application:(UIApplication*)application
     didFinishLaunchingWithOptions:(NSDictionary*)launchOptions {
-
     auto app = cocos2d::Application::getInstance();
 
     // Initialize the GLView attributes.
@@ -60,7 +59,7 @@ static NS_GAME::AppDelegate s_sharedApplication;
     [window setRootViewController:[self viewController]];
     [window makeKeyAndVisible];
 
-    [[UIApplication sharedApplication] setStatusBarHidden:true];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 
     // IMPORTANT: Setting the GLView should be done after creating the
     // RootViewController
@@ -107,7 +106,9 @@ static NS_GAME::AppDelegate s_sharedApplication;
      If your application supports background execution, called instead of
      applicationWillTerminate: when the user quits.
      */
-    cocos2d::Application::getInstance()->applicationDidEnterBackground();
+    if ([[self viewController] isActive]) {
+        cocos2d::Application::getInstance()->applicationDidEnterBackground();
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication*)application {
@@ -115,7 +116,9 @@ static NS_GAME::AppDelegate s_sharedApplication;
      Called as part of  transition from the background to the inactive state:
      here you can undo many of the changes made on entering the background.
      */
-    cocos2d::Application::getInstance()->applicationWillEnterForeground();
+    if ([[self viewController] isActive]) {
+        cocos2d::Application::getInstance()->applicationWillEnterForeground();
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication*)application {

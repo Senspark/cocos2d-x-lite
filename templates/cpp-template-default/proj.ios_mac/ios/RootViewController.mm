@@ -25,8 +25,8 @@
 
 #import "RootViewController.h"
 
-#import <platform/ios/CCEAGLView-ios.h>
 #import <cocos2d.h>
+#import <platform/ios/CCEAGLView-ios.h>
 
 @implementation RootViewController
 
@@ -59,6 +59,8 @@ viewDidLoad.
     // Enable or disable multiple touches.
     [eaglView setMultipleTouchEnabled:NO];
 
+    _active = NO;
+
     // Set EAGLView as view of RootViewController.
     [self setView:eaglView];
 }
@@ -78,11 +80,13 @@ viewDidLoad.
     NSLog(@"%s", __PRETTY_FUNCTION__);
     [super viewDidAppear:animated];
     cocos2d::Application::getInstance()->applicationWillEnterForeground();
+    _active = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     [super viewWillDisappear:animated];
+    _active = NO;
     cocos2d::Application::getInstance()->applicationDidEnterBackground();
 }
 
@@ -103,7 +107,7 @@ viewDidLoad.
 }
 
 - (void)didRotateFromInterfaceOrientation:
-        (UIInterfaceOrientation)fromInterfaceOrientation {
+    (UIInterfaceOrientation)fromInterfaceOrientation {
     [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
 
     auto glview = cocos2d::Director::getInstance()->getOpenGLView();

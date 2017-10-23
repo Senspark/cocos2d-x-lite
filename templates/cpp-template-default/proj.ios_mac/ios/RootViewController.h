@@ -27,6 +27,8 @@
 
 @interface RootViewController : UIViewController
 
+@property (nonatomic, readonly, getter=isActive) BOOL active;
+
 - (BOOL)prefersStatusBarHidden;
 
 @end

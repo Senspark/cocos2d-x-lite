@@ -23,8 +23,7 @@ namespace {
 const auto DesignResolution = cocos2d::Size(480, 320);
 } // namespace
 
-AppDelegate::AppDelegate() {
-}
+AppDelegate::AppDelegate() {}
 
 AppDelegate::~AppDelegate() {
 #if USE_AUDIO_ENGINE
@@ -62,7 +61,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) ||                               \
     (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) ||                                 \
     (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-        glview = GLViewImpl::createWithRect(
+        glview = cocos2d::GLViewImpl::createWithRect(
             "HelloCpp", cocos2d::Rect(0, 0, DesignResolution.width,
                                       DesignResolution.height));
 #else

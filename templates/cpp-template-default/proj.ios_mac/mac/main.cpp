@@ -22,13 +22,13 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "AppDelegate.h"
+#include "AppDelegate.hpp"
 #include "cocos2d.h"
 
 USING_NS_CC;
 
 int main(int argc, char *argv[])
 {
-    AppDelegate app;
+    NS_GAME::AppDelegate app;
     return Application::getInstance()->run();
 }
