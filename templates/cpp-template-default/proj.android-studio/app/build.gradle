@@ -186,7 +186,8 @@ tasks.whenTaskAdded { task ->
                                 '-frtti',
                                 '-fexceptions',
                                 '-fsigned-char',
-                                '-U__SSE__'
+                                '-U__SSE__',
+                                '-Wno-extern-c-compat'
                         ]
                         if (mode == 'debug') {
                             cppFlags.add('-DCOCOS2D_DEBUG=1')
