@@ -1,5 +1,5 @@
 abstract_target 'common' do
-    #od 'cocos2d-x', :git => 'https://github.com/Senspark/cocos2d-x-lite'
+    pod 'cocos2d-x', :git => 'https://github.com/Senspark/cocos2d-x-lite'
     
     target 'HelloCpp-desktop'
     target 'HelloCpp-mobile'
