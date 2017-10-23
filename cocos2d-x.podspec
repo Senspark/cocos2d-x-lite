@@ -92,7 +92,6 @@ Pod::Spec.new do |spec|
       'external/clipper/*/cpp',
       'external/ConvertUTF/*.{c,cpp}',
       'external/edtaa3func/*.{c,cpp}',
-      'external/flatbuffers/*.{cpp}',
       'external/md5/*.c',
       'external/poly2tri/**/*.cc',
       'external/recast/**/*.cpp',
@@ -116,7 +115,6 @@ Pod::Spec.new do |spec|
     s.dependency 'cocos2d-x/cocos2dx_macros_individual'
     s.dependency 'cocos2d-x/cocos_curl_static'
     s.dependency 'cocos2d-x/websockets_static'
-    s.dependency 'cocos2d-x/cocos_chipmunk_static'
     s.dependency 'cocos2d-x/cocos_webp_static'
     s.dependency 'cocos2d-x/cocos_tiff_static'
     s.dependency 'cocos2d-x/cocos_png_static'
@@ -150,20 +148,11 @@ Pod::Spec.new do |spec|
     s.source_files =
       'cocos/cocos2d.{h,cpp}',
       'cocos/2d/*.{h,cpp}',
-      'cocos/3d/CCAABB.{h,cpp}',
-      'cocos/3d/CCAnimate3D.h',
-      'cocos/3d/CCFrustum.{h,cpp}',
-      'cocos/3d/CCOBB.{h,cpp}',
-      'cocos/3d/CCPlane.{h,cpp}',
       'cocos/platform/*.{h,cpp}',
       'cocos/math/*.{h,inl,cpp}',
       'cocos/base/**/*.{h,c,cpp,mm}',
       'cocos/renderer/*.{h,cpp,frag,vert}',
-      'cocos/vr/*.{h,cpp,mm}',
       'cocos/deprecated/*.{h,cpp}',
-      'cocos/physics/*.{h,cpp}',
-      'cocos/physics3d/*.{h,cpp}',
-      'cocos/navmesh/*.{h,cpp}',
       'external/ConvertUTF/*',
       'external/md5/*',
       'external/tinyxml2/*',
@@ -174,40 +163,14 @@ Pod::Spec.new do |spec|
       'external/clipper/*',
       'external/tinydir/*'
 
-    s.exclude_files = 'cocos/vr/CCVRGenericHeadTracker.cpp'
-
     s.public_header_files =
       'cocos/cocos2d.h',
       'cocos/2d/*.h',
-
-      # Used in CCConfiguration.h
-      'cocos/3d/CCAnimate3D.h',
-      'cocos/3d/CCAnimation3D.h',
-      'cocos/3d/CCAnimationCurve.h',
-      'cocos/3d/CCAnimationCurve.inl',
-      'cocos/3d/CCBundle3DData.h',
-
-      # Used in CCCamera.h
-      'cocos/3d/CCAABB.h',
-      'cocos/3d/CCFrustum.h',
-      'cocos/3d/CCOBB.h',
-      'cocos/3d/CCPlane.h',
-
-      # Used in CCPhysicsSprite.h
-      'cocos/3d/CCBundle3DData.h',
-      'cocos/3d/CCMeshVertexIndexData.h',
-      'cocos/3d/CCSkeleton3D.h',
-      'cocos/3d/CCSprite3D.h',
-
       'cocos/platform/*.h',
       'cocos/math/*.{h,inl}',
       'cocos/base/**/*.h',
       'cocos/renderer/*.{h,frag,vert}',
-      'cocos/vr/*.h',
       'cocos/deprecated/*.h',
-      'cocos/physics/*.h',
-      'cocos/physics3d/*.h',
-      'cocos/navmesh/*.h',
       'external/ConvertUTF/*.h',
       'external/md5/*.h',
       'external/tinyxml2/*.h',
@@ -241,9 +204,7 @@ Pod::Spec.new do |spec|
     s.dependency 'cocos2d-x/cocos2dx_platform_static'
 
     # Optional
-    s.dependency 'cocos2d-x/recast_static'
     s.dependency 'cocos2d-x/bullet_static'
-    s.dependency 'cocos2d-x/cocos_chipmunk_static'
   end
 
   spec.subspec 'cocos2dx_static' do |s|
@@ -251,7 +212,6 @@ Pod::Spec.new do |spec|
     s.dependency 'cocos2d-x/audioengine_static'
 
     # Optional
-    s.dependency 'cocos2d-x/cocos3d_static'
     s.dependency 'cocos2d-x/cocosbuilder_static'
     s.dependency 'cocos2d-x/cocos_network_static'
     s.dependency 'cocos2d-x/cocos_ui_static'
@@ -300,7 +260,6 @@ Pod::Spec.new do |spec|
 
     s.exclude_files =
       'cocos/ui/UIWebView.cpp',
-      'cocos/ui/UIWebViewImpl-tizen.cpp',
       '*/**/*{android}*'
 
     s.dependency 'cocos2d-x/cocos_extension_static'
@@ -377,17 +336,6 @@ Pod::Spec.new do |spec|
     s.osx.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/webp/include/mac' }
   end
 
-  spec.subspec 'cocos_chipmunk_static' do |s|
-    s.preserve_path = 'external/chipmunk/include'
-
-    s.public_header_files = 'external/chipmunk/include/chipmunk/*.h'
-
-    s.ios.vendored_library = 'external/chipmunk/prebuilt/ios/*'
-    s.osx.vendored_library = 'external/chipmunk/prebuilt/mac/*'
-
-    s.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/chipmunk/include' }
-  end
-
   spec.subspec 'websockets_static' do |s|
     s.preserve_path = 'external/websockets/include/{ios,mac}'
 
@@ -458,13 +406,6 @@ Pod::Spec.new do |spec|
     s.dependency 'cocos2d-x/search_path_external'
   end
 
-  spec.subspec 'cocos3d_static' do |s|
-    s.source_files = 'cocos/3d/*.{h,inl,cpp}'
-    s.public_header_files = 'cocos/3d/*.{h,inl}'
-    s.dependency 'cocos2d-x/search_path_cocos'
-    s.dependency 'cocos2d-x/rapidjson_static'
-  end
-
   spec.subspec 'cocos_extension_static' do |s|
     s.source_files =
       'extensions/*.{h,cpp}',
@@ -495,11 +436,6 @@ Pod::Spec.new do |spec|
   spec.subspec 'cocosbuilder_static' do |s|
     s.source_files = 'cocos/editor-support/cocosbuilder/*.{h,cpp}'
     s.dependency 'cocos2d-x/cocos_extension_static'
-  end
-
-  spec.subspec 'recast_static' do |s|
-    s.source_files = 'external/recast/**/*.{h,c,cpp}'
-    s.dependency 'cocos2d-x/search_path_external'
   end
 
   spec.subspec 'bullet_static' do |s|
