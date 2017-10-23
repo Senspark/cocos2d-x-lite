@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name           = 'cocos2d-x'
-  spec.version        = '3.15.0'
+  spec.version        = '3.16.0'
   spec.summary        = 'cocos2d-x'
   spec.description    = 'cocos2d-x'
 
