@@ -88,7 +88,6 @@ Pod::Spec.new do |spec|
     s.preserve_paths =
       'cocos/**/*.{cpp,m,mm}',
       'extensions/**/*.cpp',
-      'external/bullet/**/*.cpp',
       'external/clipper/*/cpp',
       'external/ConvertUTF/*.{c,cpp}',
       'external/edtaa3func/*.{c,cpp}',
@@ -112,6 +111,7 @@ Pod::Spec.new do |spec|
       'OTHER_LDFLAGS[config=Release]' => '$(inherited) -l"cocos2d-x-release"'
     }
 
+    s.dependency 'cocos2d-x/bullet_static'
     s.dependency 'cocos2d-x/cocos2dx_macros_individual'
     s.dependency 'cocos2d-x/cocos_curl_static'
     s.dependency 'cocos2d-x/websockets_static'
@@ -125,20 +125,14 @@ Pod::Spec.new do |spec|
   end
 
   spec.subspec 'prebuilt' do |s|
-    s.ios.source_files = 'prebuilt/include/ios/**/*'
-    s.osx.source_files = 'prebuilt/include/mac/**/*'
-
     s.ios.public_header_files = 'prebuilt/include/ios/**/*'
     s.osx.public_header_files = 'prebuilt/include/mac/**/*'
 
     s.ios.header_mappings_dir = 'prebuilt/include/ios'
     s.osx.header_mappings_dir = 'prebuilt/include/mac'
 
-    s.ios.xcconfig = { 'LIBRARY_SEARCH_PATHS' => '$(PODS_ROOT)/cocos2d-x/prebuilt/libs/ios' }
-    s.osx.xcconfig = { 'LIBRARY_SEARCH_PATHS' => '$(PODS_ROOT)/cocos2d-x/prebuilt/libs/mac' }
-
-    s.ios.preserve_paths = 'prebuilt/libs/ios/*.a'
-    s.osx.preserve_paths = 'prebuilt/libs/mac/*.a'
+    s.ios.vendored_library = 'prebuilt/libs/ios/*.a'
+    s.osx.vendored_library = 'prebuilt/libs/mac/*.a'
 
     s.dependency 'cocos2d-x/cocos2dx_macros_common'
     s.dependency 'cocos2d-x/cocos2dx_prebuilt_base'
@@ -246,7 +240,7 @@ Pod::Spec.new do |spec|
 
   spec.subspec 'spine_static' do |s|
     s.source_files = 'cocos/editor-support/spine/*.{c,cpp,h}'
-    s.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/cocos/editor-support' }
+    s.header_mappings_dir = 'cocos/editor-support'
     s.dependency 'cocos2d-x/cocos2dx_internal_static'
   end
 
@@ -272,94 +266,80 @@ Pod::Spec.new do |spec|
   end
 
   spec.subspec 'cocos_freetype2_static' do |s|
-    s.preserve_path = 'external/freetype2/include/{ios,mac}'
-
     s.ios.public_header_files = 'external/freetype2/include/ios/freetype2/**/*'
     s.osx.public_header_files = 'external/freetype2/include/mac/freetype2/**/*'
 
+    s.ios.header_mappings_dir = 'external/freetype2/include/ios/freetype2'
+    s.osx.header_mappings_dir = 'external/freetype2/include/mac/freetype2'
+
     s.ios.vendored_library = 'external/freetype2/prebuilt/ios/*'
     s.osx.vendored_library = 'external/freetype2/prebuilt/mac/*'
-
-    s.ios.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/freetype2/include/ios/freetype2' }
-    s.osx.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/freetype2/include/mac/freetype2' }
   end
 
   spec.subspec 'cocos_jpeg_static' do |s|
-    s.preserve_path = 'external/jpeg/include/{ios,mac}'
-
     s.ios.public_header_files = 'external/jpeg/include/ios/*'
     s.osx.public_header_files = 'external/jpeg/include/mac/*'
 
+    s.ios.header_mappings_dir = 'external/jpeg/include/ios'
+    s.osx.header_mappings_dir = 'external/jpeg/include/mac'
+
     s.ios.vendored_library = 'external/jpeg/prebuilt/ios/*'
     s.osx.vendored_library = 'external/jpeg/prebuilt/mac/*'
-
-    s.ios.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/jpeg/include/ios' }
-    s.osx.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/jpeg/include/mac' }
   end
 
   spec.subspec 'cocos_png_static' do |s|
-    s.preserve_path = 'external/png/include/{ios,mac}'
-
     s.ios.public_header_files = 'external/png/include/ios/*'
     s.osx.public_header_files = 'external/png/include/mac/*'
 
+    s.ios.header_mappings_dir = 'external/png/include/ios'
+    s.osx.header_mappings_dir = 'external/png/include/mac'
+
     s.ios.vendored_library = 'external/png/prebuilt/ios/*'
     s.osx.vendored_library = 'external/png/prebuilt/mac/*'
-
-    s.ios.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/png/include/ios' }
-    s.osx.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/png/include/mac' }
   end
 
   spec.subspec 'cocos_tiff_static' do |s|
-    s.preserve_path = 'external/tiff/include/{ios,mac}'
-
     s.ios.public_header_files = 'external/tiff/include/ios/*'
     s.osx.public_header_files = 'external/tiff/include/mac/*'
 
+    s.ios.header_mappings_dir = 'external/tiff/include/ios'
+    s.osx.header_mappings_dir = 'external/tiff/include/mac'
+
     s.ios.vendored_library = 'external/tiff/prebuilt/ios/*'
     s.osx.vendored_library = 'external/tiff/prebuilt/mac/*'
-
-    s.ios.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/tiff/include/ios' }
-    s.osx.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/tiff/include/mac' }
   end
 
   spec.subspec 'cocos_webp_static' do |s|
-    s.preserve_path = 'external/webp/include/{ios,mac}'
-
     s.ios.public_header_files = 'external/webp/include/ios/*'
     s.osx.public_header_files = 'external/webp/include/mac/*'
 
+    s.ios.header_mappings_dir = 'external/webp/include/ios'
+    s.osx.header_mappings_dir = 'external/webp/include/mac'
+
     s.ios.vendored_library = 'external/webp/prebuilt/ios/*'
     s.osx.vendored_library = 'external/webp/prebuilt/mac/*'
-
-    s.ios.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/webp/include/ios' }
-    s.osx.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/webp/include/mac' }
   end
 
   spec.subspec 'websockets_static' do |s|
-    s.preserve_path = 'external/websockets/include/{ios,mac}'
-
     s.ios.public_header_files = 'external/websockets/include/ios/*'
     s.osx.public_header_files = 'external/websockets/include/mac/*'
 
+    s.ios.header_mappings_dir = 'external/websockets/include/ios'
+    s.osx.header_mappings_dir = 'external/websockets/include/mac'
+
     s.ios.vendored_library = 'external/websockets/prebuilt/ios/*'
     s.osx.vendored_library = 'external/websockets/prebuilt/mac/*'
-
-    s.ios.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/websockets/include/ios' }
-    s.osx.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/websockets/include/mac' }
 
     s.dependency 'cocos2d-x/cocos_ssl_static'
     s.dependency 'cocos2d-x/cocos_crypto_static'
   end
 
   spec.subspec 'openssl_base_static' do |s|
-    s.preserve_path = 'external/openssl/include/{ios,mac}'
-
     s.ios.public_header_files = 'external/openssl/include/ios/openssl/*'
     s.osx.public_header_files = 'external/openssl/include/mac/openssl/*'
 
-    s.ios.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/openssl/include/ios' }
-    s.osx.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/openssl/include/mac' }
+    s.ios.header_mappings_dir = 'external/openssl/include/ios'
+    s.osx.header_mappings_dir = 'external/openssl/include/mac'
   end
 
   spec.subspec 'cocos_crypto_static' do |s|
@@ -375,24 +355,20 @@ Pod::Spec.new do |spec|
   end
 
   spec.subspec 'cocos_curl_static' do |s|
-    s.preserve_path = 'external/curl/include/{ios,mac}'
-
     s.ios.public_header_files = 'external/curl/include/ios/curl/*'
     s.osx.public_header_files = 'external/curl/include/mac/curl/*'
 
+    s.ios.header_mappings_dir = 'external/curl/include/ios'
+    s.osx.header_mappings_dir = 'external/curl/include/mac'
+
     s.ios.vendored_library = 'external/curl/prebuilt/ios/*'
     s.osx.vendored_library = 'external/curl/prebuilt/mac/*'
-
-    s.ios.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/curl/include/ios' }
-    s.osx.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/curl/include/mac' }
 
     s.dependency 'cocos2d-x/cocos_ssl_static'
     s.dependency 'cocos2d-x/cocos_crypto_static'
   end
 
   spec.subspec 'rapidjson_static' do |s|
-    s.preserve_path = 'external/json'
-
     s.public_header_files =
       'external/json/*.h',
       'external/json/{error,internal}/*.h'
@@ -401,7 +377,6 @@ Pod::Spec.new do |spec|
   end
 
   spec.subspec 'rapidxml_static' do |s|
-    s.preserve_path = 'external/rapidxml'
     s.public_header_files = 'external/rapidxml/*'
     s.dependency 'cocos2d-x/search_path_external'
   end
@@ -439,21 +414,20 @@ Pod::Spec.new do |spec|
   end
 
   spec.subspec 'bullet_static' do |s|
-    s.source_files =
-      'external/bullet/*.h',
-      'external/bullet/BulletCollision/**/*',
-      'external/bullet/BulletDynamics/**/*',
-      'external/bullet/LinearMath/**/*'
+    s.public_header_files = 'external/bullet/include/**/*'
+    s.header_mappings_dir = 'external/bullet/include'
 
-    s.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/bullet' }
+    s.ios.vendored_library = 'external/bullet/prebuilt/ios/*'
+    s.osx.vendored_library = 'external/bullet/prebuilt/mac/*'
+
     s.dependency 'cocos2d-x/search_path_external'
   end
 
   spec.subspec 'glfw_static' do |s|
     s.platform = :osx
-    s.preserve_path = 'external/glfw3'
+    # s.preserve_path = 'external/glfw3'
     s.public_header_files = 'external/glfw3/include/mac/*'
     s.vendored_library = 'external/glfw3/prebuilt/mac/*'
-    s.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/glfw3/include/mac' }
+    # s.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/glfw3/include/mac' }
   end
 end
