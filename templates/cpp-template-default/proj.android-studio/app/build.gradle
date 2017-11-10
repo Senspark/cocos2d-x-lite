@@ -15,7 +15,7 @@ android {
     flavorDimensions 'screenSize'
 
     defaultConfig {
-        minSdkVersion 9
+        minSdkVersion 14
         targetSdkVersion 26
 
         applicationId 'org.cocos2dx.hellocpp'
@@ -198,7 +198,7 @@ tasks.whenTaskAdded { task ->
                                     '-j', Runtime.runtime.availableProcessors(),
                                     'APP_STL=c++_static',
                                     'NDK_TOOLCHAIN_VERSION=clang',
-                                    'APP_PLATFORM=android-9',
+                                    'APP_PLATFORM=android-14',
                                     'APP_LDFLAGS=-latomic',
                                     "APP_ABI=${architectures.join(' ')}",
                                     "APP_CPPFLAGS=${cppFlags.join(' ')}",
@@ -206,7 +206,7 @@ tasks.whenTaskAdded { task ->
                                     "NDK_DEBUG=${(mode == 'debug') ? 1 : 0}"
                         }
                     }
-                    found = true;
+                    found = true
                 }
             }
         }
