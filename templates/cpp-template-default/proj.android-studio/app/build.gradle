@@ -10,13 +10,13 @@ String[] architectures = [
 ]
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.3'
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
     flavorDimensions 'screenSize'
 
     defaultConfig {
         minSdkVersion 9
-        targetSdkVersion 25
+        targetSdkVersion 26
 
         applicationId 'org.cocos2dx.hellocpp'
 
@@ -110,7 +110,7 @@ android.applicationVariants.all { variant ->
     // Remove unaligned apks.
     variant.assemble.doLast {
         variant.outputs.each { output ->
-            def file = output.packageApplication.outputFile;
+            def file = output.outputFile
             if (variant.buildType.zipAlignEnabled && file.getName().contains('unaligned')) {
                 file.delete()
             }
@@ -164,10 +164,8 @@ android.applicationVariants.all { variant ->
             def file = output.outputFile
             def name = file.getName()
             def baseName = FilenameUtils.getBaseName(name)
-            def directory = file.getParent()
             def newName = String.format('%s-%s-%s-%d.apk', baseName, packageName, versionName, versionCode)
-            def newPath = String.format('%s/%s', directory, newName)
-            output.outputFile = new File(newPath)
+            output.outputFileName = newName
         }
     }
 }
@@ -179,7 +177,7 @@ tasks.whenTaskAdded { task ->
     ['iphone', 'iphonehd', 'ipadhd'].each { size ->
         ['debug', 'release'].each { mode ->
             if (!found) {
-                if (name == "prepare${size.capitalize()}${mode.capitalize()}Dependencies") {
+                if (name == "javaPreCompile${size.capitalize()}${mode.capitalize()}") {
                     task.doFirst {
                         def ndkDir = android.ndkDirectory
                         def cppFlags = [
@@ -219,5 +217,5 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':libcocos2dx')
 
-    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.android.support:multidex:1.0.2'
 }
