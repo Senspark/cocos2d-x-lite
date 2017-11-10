@@ -31,6 +31,9 @@ THE SOFTWARE.
 
 #include <algorithm>
 
+// Fix r15c: memalign not declared.
+#include <malloc.h>
+
 namespace cocos2d { namespace experimental {
 
 AudioMixerController::AudioMixerController(int bufferSizeInFrames, int sampleRate, int channelCount)

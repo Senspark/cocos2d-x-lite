@@ -23,6 +23,9 @@
  THE SOFTWARE.
  ****************************************************************************/
 
+// Fix r15c: ::fgetpos and ::fsetpos.
+#include <stdio.h>
+
 // FIXME: hack, must be included before ziputils
 #ifdef MINIZIP_FROM_SYSTEM
 #include <minizip/unzip.h>
