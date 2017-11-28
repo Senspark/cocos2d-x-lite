@@ -46,16 +46,16 @@ android {
     signingConfigs {
         release {
             // Use your key store information here.
-            keyAlias 'key_alias'
-            keyPassword 'key_password'
-            storeFile file('file_path')
-            storePassword 'store_password'
+            // keyAlias 'key_alias'
+            // keyPassword 'key_password'
+            // storeFile file('file_path')
+            // storePassword 'store_password'
         }
     }
 
     buildTypes {
         release {
-            signingConfig signingConfigs.release
+            // signingConfig signingConfigs.release
             minifyEnabled false
             debuggable false
             jniDebuggable false

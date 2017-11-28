@@ -1,4 +1,4 @@
-# Cocos2d-x-3.15 Lite with Pod
+# Cocos2d-x Lite with Pod
 
 ## Changes
 
@@ -16,7 +16,9 @@
 - Dependencies:
   - 7z: `brew install p7zip`
   - Git LFS: `brew install git-lfs`
-- Android NDK r10e (for Android installation): [Download](https://dl.google.com/android/repository/android-ndk-r10e-darwin-x86_64.zip)
+- For Android:
+  - Android NDK r10e (`r10e` tag): [Download](https://dl.google.com/android/repository/android-ndk-r10e-darwin-x86_64.zip)
+  - Android NDK r16 (`master` branch): [Download](https://dl.google.com/android/repository/android-ndk-r16-darwin-x86_64.zip)
 
 ## Drawbacks
 
@@ -25,12 +27,11 @@
 
 ## Integration
 
-### iOS and MacOS
+### iOS and macOS
 
 - Modify `Podfile`
-
 ```
-pod 'cocos2d-x', :git => 'https://github.com/Senspark/cocos2d-x-3.15'
+pod 'cocos2d-x', :git => 'https://github.com/Senspark/cocos2d-x-lite'
 ```
 
 - Note: installing this pod will automatically overrides `~/.lldbinit-Xcode` to set the source files for debugging.
@@ -39,9 +40,8 @@ pod 'cocos2d-x', :git => 'https://github.com/Senspark/cocos2d-x-3.15'
 
 - Clone the repository to the project dir (i.e. the directory which contains `Classes`):
 
-```
-git clone https://github.com/Senspark/cocos2d-x-3.15 cocos2d
-```
+  - NDK r10e: `git clone -b r10e https://github.com/Senspark/cocos2d-x-lite cocos2d`
+  - NDK r16: `git clone https://github.com/Senspark/cocos2d-x-lite cocos2d`
 
 - Extract the prebuilt libraries:
 
@@ -93,3 +93,48 @@ LOCAL_STATIC_LIBRARIES := cocos2dx_static
 
 $(call import-module, cocos/prebuilt-mk)
 ```
+
+## Build from source
+
+### iOS and macOS
+
+- Comment out `spec.prepare_command` in `cocos2d-x.podspec`:
+
+```
+  spec.prepare_command = <<-CMD
+    # echo settings set target.source-map /Volumes/Setup/Android/projects/senspark/sde2/cocos2d/ $(pwd) > ~/.lldbinit-Xcode
+    # echo Y | 7z x prebuilt/libs/ios/libcocos2d-x-debug.7z   -oprebuilt/libs/ios
+    # echo Y | 7z x prebuilt/libs/ios/libcocos2d-x-release.7z -oprebuilt/libs/ios
+    # echo Y | 7z x prebuilt/libs/mac/libcocos2d-x-debug.7z   -oprebuilt/libs/mac
+    # echo Y | 7z x prebuilt/libs/mac/libcocos2d-x-release.7z -oprebuilt/libs/mac
+  CMD
+```
+
+- Run:
+
+```
+cd prebuilt/proj.ios_mac
+pod install
+sh build.sh
+```
+
+- Header files will be generated in `prebuilt/include/ios` and `prebuilt/include/mac`
+- Prebuilt libraries will be generated and zipped in `prebuilt/libs/ios` and `prebuilt/libs/mac`
+
+### Android
+
+- Change `$(call import-module, cocos/prebuilt-mk)` to `$(call import-module, cocos)` in `templates/cpp-template-default/proj.android-studio/app/src/main/jni/Android.mk`
+
+- Create `local.properties`:
+
+```
+echo -e 'sdk.dir='$ANDROID_SDK_ROOT'\nndk.dir='$NDK_ROOT > templates/cpp-template-default/proj.android-studio/local.properties
+```
+
+- Run:
+
+```
+sh prebuilt/libs/android/compress_libs.sh
+```
+
+- Prebuilt libraries will be generated and zipped in `prebuilt/libs/android`

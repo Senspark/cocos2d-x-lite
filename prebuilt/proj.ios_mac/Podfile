@@ -6,7 +6,7 @@ cocos2d_x_dir = '../../'
 header_files_dir = '../include'
 
 abstract_target 'common' do
-    pod 'cocos2d-x/cocos2dx_static', :path => cocos2d_x_dir
+    pod 'cocos2d-x/cocos_static', :path => cocos2d_x_dir
     
     target 'libcocos2d_prebuilt_desktop'
     target 'libcocos2d_prebuilt_mobile'

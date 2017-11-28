@@ -3,6 +3,10 @@
 #include "ResourcesConfig.hpp"
 
 #include <cocos2d.h>
+#include <cocosbuilder/CocosBuilder.h>
+#include <extensions/cocos-ext.h>
+#include <spine/spine-cocos2dx.h>
+#include <ui/CocosGUI.h>
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1

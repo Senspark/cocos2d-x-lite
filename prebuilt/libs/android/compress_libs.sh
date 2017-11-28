@@ -12,20 +12,16 @@ X86_64_STRIP_PATH=$NDK_ROOT/toolchains/x86-4.9/prebuilt/darwin-x86_64/i686-linux
 LIBS=(
     libaudioengine
     libbox2d
-    libbullet
     libcocos2d
     libcocos2dandroid
     libcocos2dxinternal
-    libcocos3d
     libcocosbuilder
     libcocosdenshion
     libcpufeatures
     libextension
     libnetwork
     libpvmp3dec
-    librecast
     libspine
-    libcocosbuilder
     libui
     libvorbisidec
 )
