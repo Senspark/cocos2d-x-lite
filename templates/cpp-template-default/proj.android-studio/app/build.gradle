@@ -24,6 +24,28 @@ android {
         versionName '1.0.0'
 
         multiDexEnabled true
+
+        externalNativeBuild {
+            ndkBuild {
+                targets 'cocos2dcpp'
+                arguments 'APP_STL=c++_static'
+                arguments 'NDK_TOOLCHAIN_VERSION=clang'
+                arguments 'APP_PLATFORM=android-14'
+                arguments 'APP_LDFLAGS=-latomic'
+                arguments '-j' + Runtime.runtime.availableProcessors()
+                cppFlags '-frtti'
+                cppFlags '-fexceptions'
+                cppFlags '-fsigned-char'
+                cppFlags '-U__SSE__'
+                cppFlags '-Wno-extern-c-compat'
+            }
+        }
+    }
+
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
+        }
     }
 
     splits {
@@ -54,15 +76,29 @@ android {
     }
 
     buildTypes {
+        debug {
+            debuggable true
+            jniDebuggable true
+
+            externalNativeBuild {
+                ndkBuild {
+                    arguments "NDK_OUT=$projectDir/src/main/obj/debug"
+                    cppFlags '-DCOCOS2D_DEBUG=1'
+                }
+            }
+        }
         release {
             // signingConfig signingConfigs.release
             minifyEnabled false
             debuggable false
             jniDebuggable false
-        }
-        debug {
-            debuggable true
-            jniDebuggable true
+
+            externalNativeBuild {
+                ndkBuild {
+                    arguments "NDK_OUT=$projectDir/src/main/obj/release"
+                    cppFlags '-DNDEBUG'
+                }
+            }
         }
     }
 
@@ -107,16 +143,6 @@ android {
 }
 
 android.applicationVariants.all { variant ->
-    // Remove unaligned apks.
-    variant.assemble.doLast {
-        variant.outputs.each { output ->
-            def file = output.outputFile
-            if (variant.buildType.zipAlignEnabled && file.getName().contains('unaligned')) {
-                file.delete()
-            }
-        }
-    }
-
     // Remove unused resources.
     // https://stackoverflow.com/questions/28897450/exclude-assets-for-release-build-type
     variant.mergeAssets.doLast {
@@ -153,63 +179,18 @@ android.applicationVariants.all { variant ->
         def versionCode = String.format('%d%s%s',
                 android.defaultConfig.versionCode,
                 architectureVersionCodes.get(architecture),
-                screenSizeVersionCodes.get(screenSize)).toInteger();
+                screenSizeVersionCodes.get(screenSize)).toInteger()
 
-        output.versionCodeOverride = versionCode;
+        output.versionCodeOverride = versionCode
 
-        // Change output filename for aligned apks.
-        if (variant.buildType.zipAlignEnabled) {
-            def packageName = android.defaultConfig.applicationId
-            def versionName = android.defaultConfig.versionName
-            def file = output.outputFile
-            def name = file.getName()
-            def baseName = FilenameUtils.getBaseName(name)
-            def newName = String.format('%s-%s-%s-%d.apk', baseName, packageName, versionName, versionCode)
-            output.outputFileName = newName
-        }
-    }
-}
-
-/// External C++ build.
-tasks.whenTaskAdded { task ->
-    def name = task.name
-    def found = false
-    ['iphone', 'iphonehd', 'ipadhd'].each { size ->
-        ['debug', 'release'].each { mode ->
-            if (!found) {
-                if (name == "javaPreCompile${size.capitalize()}${mode.capitalize()}") {
-                    task.doFirst {
-                        def ndkDir = android.ndkDirectory
-                        def cppFlags = [
-                                '-frtti',
-                                '-fexceptions',
-                                '-fsigned-char',
-                                '-U__SSE__',
-                                '-Wno-extern-c-compat'
-                        ]
-                        if (mode == 'debug') {
-                            cppFlags.add('-DCOCOS2D_DEBUG=1')
-                        } else {
-                            cppFlags.add('-DNDEBUG')
-                        }
-                        exec {
-                            commandLine "$ndkDir/ndk-build",
-                                    '-C', "$projectDir/src/main/jni",
-                                    '-j', Runtime.runtime.availableProcessors(),
-                                    'APP_STL=c++_static',
-                                    'NDK_TOOLCHAIN_VERSION=clang',
-                                    'APP_PLATFORM=android-14',
-                                    'APP_LDFLAGS=-latomic',
-                                    "APP_ABI=${architectures.join(' ')}",
-                                    "APP_CPPFLAGS=${cppFlags.join(' ')}",
-                                    "NDK_OUT=$projectDir/src/main/obj/$mode",
-                                    "NDK_DEBUG=${(mode == 'debug') ? 1 : 0}"
-                        }
-                    }
-                    found = true
-                }
-            }
-        }
+        // Change output filename.
+        def packageName = android.defaultConfig.applicationId
+        def versionName = android.defaultConfig.versionName
+        def file = output.outputFile
+        def name = file.getName()
+        def baseName = FilenameUtils.getBaseName(name)
+        def newName = String.format('%s-%s-%s-%d.apk', baseName, packageName, versionName, versionCode)
+        output.outputFileName = newName
     }
 }
 
