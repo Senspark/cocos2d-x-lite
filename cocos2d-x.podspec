@@ -70,7 +70,7 @@ Pod::Spec.new do |spec|
     }
   end
 
-  spec.subspec 'cocos2dx_prebuilt_base' do |s|
+  spec.subspec 'cocos_prebuilt' do |s|
     s.preserve_paths =
       'cocos/**/*.{cpp,m,mm}',
       'extensions/**/*.cpp',
@@ -85,6 +85,15 @@ Pod::Spec.new do |spec|
       'external/xxhash/*.c',
       'external/xxtea/*.cpp'
 
+    s.ios.public_header_files = 'prebuilt/include/ios/**/*'
+    s.osx.public_header_files = 'prebuilt/include/mac/**/*'
+
+    s.ios.header_mappings_dir = 'prebuilt/include/ios'
+    s.osx.header_mappings_dir = 'prebuilt/include/mac'
+
+    s.ios.vendored_library = 'prebuilt/libs/ios/*.a'
+    s.osx.vendored_library = 'prebuilt/libs/mac/*.a'
+
     s.xcconfig = {
       'HEADER_SEARCH_PATHS' => [
         '$(PODS_ROOT)/Headers/Public/cocos2d-x/cocos',
@@ -95,8 +104,10 @@ Pod::Spec.new do |spec|
       'OTHER_LDFLAGS[config=Debug]'   => '$(inherited) -l"cocos2d-x-debug"',
       'OTHER_LDFLAGS[config=Release]' => '$(inherited) -l"cocos2d-x-release"'
     }
+    s.ios.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/prebuilt/include/ios' }
+    s.osx.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/prebuilt/include/mac' }
 
-    s.dependency 'cocos2d-x/cocos2dx_macros_individual'
+    s.dependency 'cocos2d-x/cocos_macros'
     s.dependency 'cocos2d-x/bullet_prebuilt_static'
     s.dependency 'cocos2d-x/curl_prebuilt_static'
     s.dependency 'cocos2d-x/freetype2_prebuilt_static'
@@ -107,25 +118,7 @@ Pod::Spec.new do |spec|
     s.dependency 'cocos2d-x/tiff_prebuilt_static'
     s.dependency 'cocos2d-x/webp_prebuilt_static'
     s.dependency 'cocos2d-x/websockets_prebuilt_static'
-
     s.osx.dependency 'cocos2d-x/glfw_prebuilt_static'
-  end
-
-  spec.subspec 'cocos_prebuilt' do |s|
-    s.ios.public_header_files = 'prebuilt/include/ios/**/*'
-    s.osx.public_header_files = 'prebuilt/include/mac/**/*'
-
-    s.ios.header_mappings_dir = 'prebuilt/include/ios'
-    s.osx.header_mappings_dir = 'prebuilt/include/mac'
-
-    s.ios.vendored_library = 'prebuilt/libs/ios/*.a'
-    s.osx.vendored_library = 'prebuilt/libs/mac/*.a'
-
-    s.ios.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/prebuilt/include/ios' }
-    s.osx.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/prebuilt/include/mac' }
-
-    s.dependency 'cocos2d-x/cocos_macros'
-    s.dependency 'cocos2d-x/cocos2dx_prebuilt_base'
   end
 
   spec.subspec 'cocos_internal_static' do |s|
