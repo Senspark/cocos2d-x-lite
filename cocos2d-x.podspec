@@ -124,7 +124,7 @@ Pod::Spec.new do |spec|
     s.ios.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/prebuilt/include/ios' }
     s.osx.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/prebuilt/include/mac' }
 
-    s.dependency 'cocos2d-x/cocos2dx_macros_common'
+    s.dependency 'cocos2d-x/cocos_macros'
     s.dependency 'cocos2d-x/cocos2dx_prebuilt_base'
   end
 
