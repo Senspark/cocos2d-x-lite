@@ -101,6 +101,7 @@ Pod::Spec.new do |spec|
     s.xcconfig = {
       'HEADER_SEARCH_PATHS' => [
         '$(PODS_ROOT)/Headers/Public/cocos2d-x/cocos',
+        '$(PODS_ROOT)/Headers/Public/cocos2d-x/cocos/editor-support',
         '$(PODS_ROOT)/Headers/Public/cocos2d-x/extension',
         '$(PODS_ROOT)/Headers/Public/cocos2d-x/external',
         '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/poly2tri'
