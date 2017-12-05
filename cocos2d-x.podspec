@@ -109,8 +109,14 @@ Pod::Spec.new do |spec|
       'OTHER_LDFLAGS[config=Debug]'   => '$(inherited) -l"cocos2d-x-debug"',
       'OTHER_LDFLAGS[config=Release]' => '$(inherited) -l"cocos2d-x-release"'
     }
-    s.ios.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/prebuilt/include/ios' }
-    s.osx.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/prebuilt/include/mac' }
+    s.ios.xcconfig = {
+      'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/prebuilt/include/ios',
+      'LIBRARY_SEARCH_PATHS' => '$(PODS_ROOT)/cocos2d-x/prebuilt/libs/ios'
+    }
+    s.osx.xcconfig = {
+      'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/prebuilt/include/mac',
+      'LIBRARY_SEARCH_PATHS' => '$(PODS_ROOT)/cocos2d-x/prebuilt/libs/mac'
+    }
 
     s.dependency 'cocos2d-x/cocos_macros'
     s.dependency 'cocos2d-x/bullet_prebuilt_static'
