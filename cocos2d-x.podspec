@@ -70,7 +70,7 @@ Pod::Spec.new do |spec|
     }
   end
 
-  spec.subspec 'cocos_prebuilt_internal' do |s|
+  spec.subspec 'cocos_prebuilt' do |s|
     # Preserve source files for debugging.
     s.preserve_paths =
       'cocos/**/*.{cpp,m,mm}',
@@ -111,7 +111,6 @@ Pod::Spec.new do |spec|
     s.ios.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/prebuilt/include/ios' }
     s.osx.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/prebuilt/include/mac' }
 
-    s.dependency 'cocos2d-x/cocos_prebuilt_internal'
     s.dependency 'cocos2d-x/cocos_macros'
     s.dependency 'cocos2d-x/bullet_prebuilt_static'
     s.dependency 'cocos2d-x/curl_prebuilt_static'
