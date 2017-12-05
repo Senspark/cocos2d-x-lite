@@ -85,9 +85,10 @@ Pod::Spec.new do |spec|
       'external/unzip/*.cpp',
       'external/xxhash/*.c',
       'external/xxtea/*.cpp'
-  end
 
-  spec.subspec 'cocos_prebuilt' do |s|
+    s.ios.source_files = 'prebuilt/include/ios/**/*'
+    s.osx.source_files = 'prebuilt/include/mac/**/*'
+
     s.ios.public_header_files = 'prebuilt/include/ios/**/*'
     s.osx.public_header_files = 'prebuilt/include/mac/**/*'
 
