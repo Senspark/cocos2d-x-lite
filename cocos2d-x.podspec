@@ -86,6 +86,9 @@ Pod::Spec.new do |spec|
       'external/xxhash/*.c',
       'external/xxtea/*.cpp'
 
+    s.ios.preserve_paths = 'prebuilt/libs/ios/*.a'
+    s.osx.preserve_paths = 'prebuilt/libs/mac/*.a'
+
     s.ios.source_files = 'prebuilt/include/ios/**/*'
     s.osx.source_files = 'prebuilt/include/mac/**/*'
 
@@ -94,9 +97,6 @@ Pod::Spec.new do |spec|
 
     s.ios.header_mappings_dir = 'prebuilt/include/ios'
     s.osx.header_mappings_dir = 'prebuilt/include/mac'
-
-    s.ios.vendored_library = 'prebuilt/libs/ios/*.a'
-    s.osx.vendored_library = 'prebuilt/libs/mac/*.a'
 
     s.xcconfig = {
       'HEADER_SEARCH_PATHS' => [
