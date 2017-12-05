@@ -283,15 +283,15 @@ Pod::Spec.new do |spec|
   end
 
   spec.subspec 'bullet_prebuilt_static' do |s|
-    s.public_header_files = 'external/bullet/include/**/*'
+    s.source_files = 'external/bullet/include/**/*'
     s.ios.vendored_library = 'external/bullet/prebuilt/ios/*'
     s.osx.vendored_library = 'external/bullet/prebuilt/mac/*'
     s.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/bullet/include' }
   end
 
   spec.subspec 'curl_prebuilt_static' do |s|
-    s.ios.public_header_files = 'external/curl/include/ios/curl/*'
-    s.osx.public_header_files = 'external/curl/include/mac/curl/*'
+    s.ios.source_files = 'external/curl/include/ios/curl/*'
+    s.osx.source_files = 'external/curl/include/mac/curl/*'
 
     s.ios.vendored_library = 'external/curl/prebuilt/ios/*'
     s.osx.vendored_library = 'external/curl/prebuilt/mac/*'
@@ -303,8 +303,8 @@ Pod::Spec.new do |spec|
   end
 
   spec.subspec 'freetype2_prebuilt_static' do |s|
-    s.ios.public_header_files = 'external/freetype2/include/ios/freetype2/**/*'
-    s.osx.public_header_files = 'external/freetype2/include/mac/freetype2/**/*'
+    s.ios.source_files = 'external/freetype2/include/ios/freetype2/**/*'
+    s.osx.source_files = 'external/freetype2/include/mac/freetype2/**/*'
 
     s.ios.vendored_library = 'external/freetype2/prebuilt/ios/*'
     s.osx.vendored_library = 'external/freetype2/prebuilt/mac/*'
@@ -315,14 +315,14 @@ Pod::Spec.new do |spec|
 
   spec.subspec 'glfw_prebuilt_static' do |s|
     s.platform = :osx
-    s.public_header_files = 'external/glfw3/include/mac/*'
+    s.source_files = 'external/glfw3/include/mac/*'
     s.vendored_library = 'external/glfw3/prebuilt/mac/*'
     s.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/glfw3/include/mac' }
   end
 
   spec.subspec 'jpeg_prebuilt_static' do |s|
-    s.ios.public_header_files = 'external/jpeg/include/ios/*'
-    s.osx.public_header_files = 'external/jpeg/include/mac/*'
+    s.ios.source_files = 'external/jpeg/include/ios/*'
+    s.osx.source_files = 'external/jpeg/include/mac/*'
 
     s.ios.vendored_library = 'external/jpeg/prebuilt/ios/*'
     s.osx.vendored_library = 'external/jpeg/prebuilt/mac/*'
@@ -332,8 +332,8 @@ Pod::Spec.new do |spec|
   end
 
   spec.subspec 'openssl_prebuilt_static' do |s|
-    s.ios.public_header_files = 'external/openssl/include/ios/openssl/*'
-    s.osx.public_header_files = 'external/openssl/include/mac/openssl/*'
+    s.ios.source_files = 'external/openssl/include/ios/openssl/*'
+    s.osx.source_files = 'external/openssl/include/mac/openssl/*'
 
     s.ios.vendored_library = 'external/openssl/prebuilt/ios/*'
     s.osx.vendored_library = 'external/openssl/prebuilt/mac/*'
@@ -343,8 +343,8 @@ Pod::Spec.new do |spec|
   end
 
   spec.subspec 'png_prebuilt_static' do |s|
-    s.ios.public_header_files = 'external/png/include/ios/*'
-    s.osx.public_header_files = 'external/png/include/mac/*'
+    s.ios.source_files = 'external/png/include/ios/*'
+    s.osx.source_files = 'external/png/include/mac/*'
 
     s.ios.vendored_library = 'external/png/prebuilt/ios/*'
     s.osx.vendored_library = 'external/png/prebuilt/mac/*'
@@ -355,19 +355,19 @@ Pod::Spec.new do |spec|
 
   spec.subspec 'rapidjson_header_static' do |s|
     s.preserve_path = 'dummy_path'
-    s.public_header_files = 'external/json/**/*'
+    s.source_files = 'external/json/**/*'
     s.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external' }
   end
 
   spec.subspec 'rapidxml_header_static' do |s|
     s.preserve_path = 'dummy_path'
-    s.public_header_files = 'external/rapidxml/*'
+    s.source_files = 'external/rapidxml/*'
     s.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(PODS_ROOT)/Headers/Public/cocos2d-x/external' }
   end
 
   spec.subspec 'tiff_prebuilt_static' do |s|
-    s.ios.public_header_files = 'external/tiff/include/ios/*'
-    s.osx.public_header_files = 'external/tiff/include/mac/*'
+    s.ios.source_files = 'external/tiff/include/ios/*'
+    s.osx.source_files = 'external/tiff/include/mac/*'
 
     s.ios.vendored_library = 'external/tiff/prebuilt/ios/*'
     s.osx.vendored_library = 'external/tiff/prebuilt/mac/*'
@@ -377,8 +377,8 @@ Pod::Spec.new do |spec|
   end
 
   spec.subspec 'webp_prebuilt_static' do |s|
-    s.ios.public_header_files = 'external/webp/include/ios/*'
-    s.osx.public_header_files = 'external/webp/include/mac/*'
+    s.ios.source_files = 'external/webp/include/ios/*'
+    s.osx.source_files = 'external/webp/include/mac/*'
 
     s.ios.vendored_library = 'external/webp/prebuilt/ios/*'
     s.osx.vendored_library = 'external/webp/prebuilt/mac/*'
@@ -388,8 +388,8 @@ Pod::Spec.new do |spec|
   end
 
   spec.subspec 'websockets_prebuilt_static' do |s|
-    s.ios.public_header_files = 'external/websockets/include/ios/*'
-    s.osx.public_header_files = 'external/websockets/include/mac/*'
+    s.ios.source_files = 'external/websockets/include/ios/*'
+    s.osx.source_files = 'external/websockets/include/mac/*'
 
     s.ios.vendored_library = 'external/websockets/prebuilt/ios/*'
     s.osx.vendored_library = 'external/websockets/prebuilt/mac/*'
