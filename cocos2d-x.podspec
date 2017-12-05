@@ -102,7 +102,7 @@ Pod::Spec.new do |spec|
       'HEADER_SEARCH_PATHS' => [
         '$(PODS_ROOT)/Headers/Public/cocos2d-x/cocos',
         '$(PODS_ROOT)/Headers/Public/cocos2d-x/cocos/editor-support',
-        '$(PODS_ROOT)/Headers/Public/cocos2d-x/extension',
+        '$(PODS_ROOT)/Headers/Public/cocos2d-x/extensions',
         '$(PODS_ROOT)/Headers/Public/cocos2d-x/external',
         '$(PODS_ROOT)/Headers/Public/cocos2d-x/external/poly2tri'
       ].join(' '),
